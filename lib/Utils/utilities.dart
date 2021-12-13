@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-LinearGradient baseGrid = LinearGradient(
+LinearGradient baseGrad = LinearGradient(
   colors: [
     Color(0xfff9964ff),
     Color(0xfff8d53ff),

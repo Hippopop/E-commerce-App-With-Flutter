@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/Interface/splashscreen.dart';
+import 'package:ecommerce_app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Dripps Commerce",
+      theme: ThemeData(
+        primarySwatch: Colors.grey,
+      ),
+      routes: routes,
       home: SplashScreen(),
     );
   }
