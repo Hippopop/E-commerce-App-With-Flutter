@@ -13,3 +13,5 @@ LinearGradient baseGrad = LinearGradient(
 TextStyle smallSub = TextStyle(
   fontSize: 18,
 );
+
+String tag = "Hero Tag";
