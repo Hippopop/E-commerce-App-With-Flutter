@@ -237,24 +237,21 @@ class _HomePageState extends State<HomePage> {
               child: SafeArea(
                 child: Column(
                   children: [
-                    Expanded(
+                    Flexible(
                         flex: 1,
-                        child: Flexible(
-                          flex: 1,
-                          child: Container(
-                            //height: height*,
-                            color: Colors.amber,
-                            margin: EdgeInsets.symmetric(
-                                vertical: height * 0.010,
-                                horizontal: width * 0.050),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text("New Arrivals"),
-                                ElevatedButton(
-                                    onPressed: () {}, child: Text("View all")),
-                              ],
-                            ),
+                        child: Container(
+                          height: height,
+                          color: Colors.amber,
+                          margin: EdgeInsets.symmetric(
+                              vertical: height * 0.010,
+                              horizontal: width * 0.050),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text("New Arrivals"),
+                              ElevatedButton(
+                                  onPressed: () {}, child: Text("View all")),
+                            ],
                           ),
                         )),
                     Expanded(flex: 7, child: Container()),
