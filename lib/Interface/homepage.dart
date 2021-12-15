@@ -1,8 +1,7 @@
+import 'package:ecommerce_app/Interface/productview.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'productview.dart';
-import 'package:flutter/scheduler.dart';
 
 class HomePage extends StatefulWidget {
   static final route = "/Interface/homepage";
@@ -310,7 +309,7 @@ class _HomePageState extends State<HomePage> {
                                             clipBehavior: Clip.hardEdge,
                                             margin: EdgeInsets.all(5),
                                             decoration: BoxDecoration(
-                                              color: Color(0x555DFE5E3),
+                                              color: Color(0xffff5f5f5),
                                               borderRadius:
                                                   BorderRadius.circular(12),
                                             ),
@@ -350,7 +349,7 @@ class _HomePageState extends State<HomePage> {
                                             Container(
                                               padding: EdgeInsets.all(5),
                                               decoration: BoxDecoration(
-                                                color: Color(0x555DFE5E3),
+                                                color: Color(0xffff5f5f5),
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                               ),
@@ -410,20 +409,26 @@ class _HomePageState extends State<HomePage> {
                                       flex: 6,
                                       child: Stack(
                                         children: [
-                                          Container(
-                                            width: double.infinity,
-                                            clipBehavior: Clip.hardEdge,
-                                            margin: EdgeInsets.all(5),
-                                            decoration: BoxDecoration(
-                                              color: Color(0x555DFE5E3),
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                            ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              Navigator.pushNamed(context,
+                                                  ProductViewPage.route);
+                                            },
                                             child: Hero(
-                                              tag: 'hero',
-                                              child: Image.network(
-                                                "https://images.unsplash.com/photo-1637208698772-9b4d56d2d3a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDExNHxTNE1LTEFzQkI3NHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
-                                                fit: BoxFit.cover,
+                                              tag: "Cont",
+                                              child: Container(
+                                                width: double.infinity,
+                                                clipBehavior: Clip.hardEdge,
+                                                margin: EdgeInsets.all(5),
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xffff5f5f5),
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                ),
+                                                child: Image.network(
+                                                  "https://images.unsplash.com/photo-1637208698772-9b4d56d2d3a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDExNHxTNE1LTEFzQkI3NHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -453,12 +458,15 @@ class _HomePageState extends State<HomePage> {
                                           children: [
                                             Text(
                                               "Wrist Watch Gshock",
-                                              style: TextStyle(),
+                                              style: TextStyle(
+                                                color: Colors.black54,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                             Container(
                                               padding: EdgeInsets.all(5),
                                               decoration: BoxDecoration(
-                                                color: Color(0x555DFE5E3),
+                                                color: Color(0xffff5f5f5),
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                               ),
@@ -531,7 +539,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
-
