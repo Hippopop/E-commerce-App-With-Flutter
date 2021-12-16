@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +17,9 @@ class _ProductViewPageState extends State<ProductViewPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    final ProductInfo product =
+        ModalRoute.of(context)!.settings.arguments as ProductInfo;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -63,7 +69,7 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                       Expanded(
                                           flex: 9,
                                           child: Hero(
-                                            tag: "Cont",
+                                            tag: product.id,
                                             child: Container(
                                               margin: const EdgeInsets.all(8),
                                               decoration: BoxDecoration(
@@ -74,7 +80,7 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                               width: double.infinity,
                                               clipBehavior: Clip.hardEdge,
                                               child: Image.network(
-                                                "https://images.unsplash.com/photo-1637208698772-9b4d56d2d3a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDExNHxTNE1LTEFzQkI3NHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
+                                                product.images[0],
                                                 fit: BoxFit.cover,
                                               ),
                                             ),
@@ -120,8 +126,8 @@ class _ProductViewPageState extends State<ProductViewPage> {
                       flex: 6,
                       child: Row(
                         children: [
-                          const Text(
-                            r"$150",
+                          Text(
+                            r"$" + product.price.toString(),
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 22),
                           ),
@@ -155,12 +161,12 @@ class _ProductViewPageState extends State<ProductViewPage> {
                         ],
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                       flex: 4,
-                      child: const Align(
+                      child: Align(
                         alignment: Alignment.bottomLeft,
-                        child: const Text(
-                          "Product Name",
+                        child: Text(
+                          product.name,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
@@ -187,53 +193,9 @@ class _ProductViewPageState extends State<ProductViewPage> {
                         margin: const EdgeInsets.symmetric(vertical: 8),
                         child: ListView(
                           scrollDirection: Axis.horizontal,
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(
-                                right: 12,
-                              ),
-                              width: 108,
-                              clipBehavior: Clip.hardEdge,
-                              decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Image.network(
-                                "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(
-                                right: 15,
-                              ),
-                              width: 108,
-                              clipBehavior: Clip.hardEdge,
-                              decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Image.network(
-                                "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(
-                                right: 15,
-                              ),
-                              width: 108,
-                              clipBehavior: Clip.hardEdge,
-                              decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Image.network(
-                                "https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ],
+                          children: product.images
+                              .map((link) => colorShowContainer(context, link))
+                              .toList(),
                         ),
                       ),
                     ),
@@ -268,178 +230,10 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                   runSpacing: 8,
                                   direction: Axis.horizontal,
                                   alignment: WrapAlignment.start,
-                                  children: [
-                                    Container(
-                                      height: 44,
-                                      width: 55,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 0.8,
-                                          color: Colors.black,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        "7.5",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    ),
-                                    Container(
-                                      height: 44,
-                                      width: 55,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 0.8,
-                                          color: Colors.black,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        "7.5",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    ),
-                                    Container(
-                                      height: 44,
-                                      width: 55,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 0.8,
-                                          color: Colors.black,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        "7.5",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    ),
-                                    Container(
-                                      height: 44,
-                                      width: 55,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 0.8,
-                                          color: Colors.black,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        "7.5",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    ),
-                                    Container(
-                                      height: 44,
-                                      width: 55,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 0.8,
-                                          color: Colors.black,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        "7.5",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    ),
-                                    Container(
-                                      height: 44,
-                                      width: 55,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 0.8,
-                                          color: Colors.black,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        "7.5",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    ),
-                                    Container(
-                                      height: 44,
-                                      width: 55,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 0.8,
-                                          color: Colors.black,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        "7.5",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    ),
-                                    Container(
-                                      height: 44,
-                                      width: 55,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 0.8,
-                                          color: Colors.black,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        "7.5",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    ),
-                                    Container(
-                                      height: 44,
-                                      width: 55,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 0.8,
-                                          color: Colors.black,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        "7.5",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    ),
-                                    Container(
-                                      height: 44,
-                                      width: 55,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 0.8,
-                                          color: Colors.black,
-                                        ),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Center(
-                                          child: Text(
-                                        "7.5",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                    ),
-                                  ],
+                                  children: product.sizes
+                                      .map((size) =>
+                                          sizeShowingBox(context, size))
+                                      .toList(),
                                 ),
                               ),
                             ),
@@ -475,7 +269,7 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                 child: Column(
                                   children: [
                                     Text(
-                                      "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
+                                      product.description,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black54),

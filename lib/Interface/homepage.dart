@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/Interface/productview.dart';
+import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -112,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                 Positioned(
                     bottom: 20,
                     child: Card(
-                      elevation: 30,
+                      elevation: 8,
                       margin: EdgeInsets.symmetric(horizontal: height * 0100),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25)),
@@ -238,7 +239,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   Expanded(
-                      flex: 1,
+                      flex: 3,
                       child: Container(
                         height: height,
                         // color: Colors.amber,
@@ -280,244 +281,23 @@ class _HomePageState extends State<HomePage> {
                         ),
                       )),
                   Expanded(
-                      flex: 7,
+                      flex: 22,
                       child: Container(
                         margin: EdgeInsets.only(
-                          top: 5,
+                          top: height * 0.014,
                           left: height * 0.025,
                           right: height * 0.025,
+                          bottom: height * 0.014,
                         ),
                         width: 390,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: 220,
-                              width: 165,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                      flex: 6,
-                                      child: Stack(
-                                        children: [
-                                          Container(
-                                            width: double.infinity,
-                                            clipBehavior: Clip.hardEdge,
-                                            margin: EdgeInsets.all(5),
-                                            decoration: BoxDecoration(
-                                              color: Color(0xffff5f5f5),
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                            ),
-                                            child: Image.network(
-                                              "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDI4NXxTNE1LTEFzQkI3NHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          Positioned(
-                                              top: 12,
-                                              right: 12,
-                                              child: Icon(
-                                                Icons.favorite,
-                                                color: Colors.red,
-                                              ))
-                                        ],
-                                      )),
-                                  Expanded(
-                                      flex: 4,
-                                      child: Container(
-                                        margin: EdgeInsets.only(
-                                          top: 5,
-                                          bottom: 8,
-                                          left: 8,
-                                          right: 8,
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Wrist Watch Gshock",
-                                              style: TextStyle(),
-                                            ),
-                                            Container(
-                                              padding: EdgeInsets.all(5),
-                                              decoration: BoxDecoration(
-                                                color: Color(0xffff5f5f5),
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              ),
-                                              child: Text(
-                                                " 7 Colours",
-                                                style: TextStyle(fontSize: 12),
-                                              ),
-                                            ),
-                                            Container(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    r" $120",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18,
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    padding: EdgeInsets.all(5),
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                        border: Border.all(
-                                                          width: 0.8,
-                                                          color: Colors.black,
-                                                        )),
-                                                    child: Icon(
-                                                      Icons.add,
-                                                      size: 16,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              height: 220,
-                              width: 165,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Column(
-                                children: [
-                                  Expanded(
-                                      flex: 6,
-                                      child: Stack(
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () {
-                                              Navigator.pushNamed(context,
-                                                  ProductViewPage.route);
-                                            },
-                                            child: Hero(
-                                              tag: "Cont",
-                                              child: Container(
-                                                width: double.infinity,
-                                                clipBehavior: Clip.hardEdge,
-                                                margin: EdgeInsets.all(5),
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xffff5f5f5),
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                ),
-                                                child: Image.network(
-                                                  "https://images.unsplash.com/photo-1637208698772-9b4d56d2d3a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDExNHxTNE1LTEFzQkI3NHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned(
-                                              top: 12,
-                                              right: 12,
-                                              child: Icon(
-                                                Icons.favorite,
-                                                color: Colors.red,
-                                              ))
-                                        ],
-                                      )),
-                                  Expanded(
-                                      flex: 4,
-                                      child: Container(
-                                        margin: EdgeInsets.only(
-                                          top: 5,
-                                          bottom: 8,
-                                          left: 8,
-                                          right: 8,
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Wrist Watch Gshock",
-                                              style: TextStyle(
-                                                color: Colors.black54,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            Container(
-                                              padding: EdgeInsets.all(5),
-                                              decoration: BoxDecoration(
-                                                color: Color(0xffff5f5f5),
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              ),
-                                              child: Text(
-                                                " 7 Colours",
-                                                style: TextStyle(fontSize: 12),
-                                              ),
-                                            ),
-                                            Container(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    r" $120",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18,
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    padding: EdgeInsets.all(5),
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                        border: Border.all(
-                                                          width: 0.8,
-                                                          color: Colors.black,
-                                                        )),
-                                                    child: Icon(
-                                                      Icons.add,
-                                                      size: 16,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )),
-                                ],
-                              ),
-                            ),
-                          ],
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: productList.map((product) => productContainer(context, product)).toList(),
                         ),
                       )),
                   Expanded(
-                    flex: 2,
+                    flex: 5,
                     child: Container(
                       height: height * 0.10,
                       width: double.infinity,
