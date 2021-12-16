@@ -221,12 +221,13 @@ class _ProductViewPageState extends State<ProductViewPage> {
                             Expanded(
                               flex: 8,
                               child: Container(
+                                alignment: Alignment.topLeft,
                                 margin: EdgeInsets.only(
                                   top: 8,
                                 ),
                                 child: Wrap(
                                   clipBehavior: Clip.hardEdge,
-                                  spacing: 8,
+                                  spacing: 10,
                                   runSpacing: 8,
                                   direction: Axis.horizontal,
                                   alignment: WrapAlignment.start,
@@ -263,10 +264,13 @@ class _ProductViewPageState extends State<ProductViewPage> {
                             Expanded(
                               flex: 6,
                               child: Container(
+                                alignment: Alignment.topLeft,
                                 margin: EdgeInsets.only(
                                   top: 8,
                                 ),
                                 child: Column(
+                                  // mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       product.description,

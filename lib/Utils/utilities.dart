@@ -8,8 +8,8 @@ LinearGradient baseGrad = LinearGradient(
     Color(0xfff8d53ff),
     Color(0xfff7631ff),
   ],
-  begin: Alignment.topLeft,
-  end: Alignment.bottomLeft,
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
 );
 
 TextStyle smallSub = TextStyle(
@@ -18,9 +18,9 @@ TextStyle smallSub = TextStyle(
 
 Container productContainer(BuildContext? context, ProductInfo product) {
   return Container(
-    margin: EdgeInsets.symmetric(horizontal: 8),
+    margin: EdgeInsets.only(right: 10),
     height: 220,
-    width: 165,
+    width: 144,
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(20),
@@ -39,6 +39,7 @@ Container productContainer(BuildContext? context, ProductInfo product) {
                   child: Hero(
                     tag: product.id,
                     child: Container(
+                      height: double.infinity,
                       width: double.infinity,
                       clipBehavior: Clip.hardEdge,
                       margin: EdgeInsets.all(5),
@@ -128,7 +129,6 @@ Container productContainer(BuildContext? context, ProductInfo product) {
   );
 }
 
-
 Container colorShowContainer(BuildContext context, String link) {
   return Container(
     margin: const EdgeInsets.only(
@@ -147,7 +147,6 @@ Container colorShowContainer(BuildContext context, String link) {
   );
 }
 
-
 Container sizeShowingBox(BuildContext context, String size) {
   return Container(
     height: 44,
@@ -161,10 +160,8 @@ Container sizeShowingBox(BuildContext context, String size) {
     ),
     child: Center(
         child: Text(
-          size,
-          style: TextStyle(
-              fontWeight: FontWeight.bold),
-        )),
+      size,
+      style: TextStyle(fontWeight: FontWeight.bold),
+    )),
   );
 }
-

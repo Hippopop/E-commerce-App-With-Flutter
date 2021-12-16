@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            flex: 4,
+            flex: 38,
             child: Stack(
               fit: StackFit.expand,
               clipBehavior: Clip.none,
@@ -30,21 +30,21 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Positioned(
                   top: 0,
-                  bottom: 80,
+                  bottom: 70,
                   left: 0,
                   right: 0,
                   child: Container(
-                    height: height * 0.20,
+                    height: height * 0.25,
                     decoration: BoxDecoration(
                         gradient: baseGrad,
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(25),
-                          bottomRight: Radius.circular(25),
+                          bottomLeft: Radius.circular(16),
+                          bottomRight: Radius.circular(16),
                         )),
                   ),
                 ),
                 Positioned(
-                  top: 0,
+                  top: 8,
                   child: SafeArea(
                       child: Container(
                     width: width,
@@ -113,22 +113,23 @@ class _HomePageState extends State<HomePage> {
                 Positioned(
                     bottom: 20,
                     child: Card(
-                      elevation: 8,
+                      elevation: 5,
                       margin: EdgeInsets.symmetric(horizontal: height * 0100),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25)),
+                          borderRadius: BorderRadius.circular(20)),
                       child: Container(
-                        height: height * 0.240,
-                        width: width * 0.90,
+                        height: height * 0.200,
+                        width: width * 0.88,
                       ),
                     ))
               ],
             ),
           ),
           Expanded(
-            flex: 1,
+            flex: 12,
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: width * 0.050),
+              margin: EdgeInsets.only(
+                  left: width * 0.050, right: width * 0.050, top: 10),
               width: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(18),
                         decoration: BoxDecoration(
                           color: Colors.deepPurple,
                           borderRadius: BorderRadius.circular(12),
@@ -149,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Text(
-                        "Games",
+                        "Category",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       )
@@ -159,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(18),
                         decoration: BoxDecoration(
                           color: Colors.deepPurple,
                           borderRadius: BorderRadius.circular(12),
@@ -171,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Text(
-                        "Games",
+                        "Compare",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       )
@@ -181,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(18),
                         decoration: BoxDecoration(
                           color: Colors.deepPurple,
                           borderRadius: BorderRadius.circular(12),
@@ -193,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Text(
-                        "Games",
+                        "Sales Event",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       )
@@ -203,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(18),
                         decoration: BoxDecoration(
                           color: Colors.deepPurple,
                           borderRadius: BorderRadius.circular(12),
@@ -215,7 +216,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Text(
-                        "Games",
+                        "Offer",
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       )
@@ -226,22 +227,22 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Expanded(
-            flex: 5,
+            flex: 50,
             child: Container(
-              padding: EdgeInsets.only(top: 22),
+              padding: EdgeInsets.only(top: 20),
               margin: EdgeInsets.only(top: 20),
               decoration: BoxDecoration(
                   color: Color(0x555DFE5E3),
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25),
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
                   )),
               child: Column(
                 children: [
                   Expanded(
                       flex: 3,
                       child: Container(
-                        height: height,
+                        height: double.infinity,
                         // color: Colors.amber,
                         margin: EdgeInsets.symmetric(
                           horizontal: width * 0.050,
@@ -272,7 +273,7 @@ class _HomePageState extends State<HomePage> {
                                       gradient: baseGrad,
                                     ),
                                     child: Text(
-                                      "View all",
+                                      "View All",
                                       style: TextStyle(
                                         color: Colors.white,
                                       ),
@@ -284,16 +285,19 @@ class _HomePageState extends State<HomePage> {
                       flex: 22,
                       child: Container(
                         margin: EdgeInsets.only(
-                          top: height * 0.014,
+                          top: height * 0.015,
                           left: height * 0.025,
                           right: height * 0.025,
-                          bottom: height * 0.014,
+                          bottom: height * 0.020,
                         ),
                         width: 390,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: productList.map((product) => productContainer(context, product)).toList(),
+                          children: productList
+                              .map((product) =>
+                                  productContainer(context, product))
+                              .toList(),
                         ),
                       )),
                   Expanded(
