@@ -3,6 +3,8 @@ import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
   static final route = "/Interface/homepage";
@@ -13,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final CarouselController _controller = CarouselController();
+  int serial = 0;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -119,7 +123,175 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(20)),
                       child: Container(
                         height: height * 0.200,
-                        width: width * 0.88,
+                        width: width * 0.9,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 18,
+                              child: Container(
+                                width: double.infinity,
+                                child: CarouselSlider(
+                                  carouselController: _controller,
+                                  options: CarouselOptions(
+                                    onPageChanged: (index, reason) {
+                                      setState(() {
+                                        serial = index;
+                                      });
+                                    },
+                                    viewportFraction: 1,
+                                    autoPlay: true,
+                                  ),
+                                  items: productList
+                                      .map((product) => Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 60,
+                                                child: Container(
+                                                  margin: EdgeInsets.all(8),
+                                                  width: double.infinity,
+                                                  height: double.infinity,
+                                                  clipBehavior: Clip.hardEdge,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12),
+                                                  ),
+                                                  child: Image.network(
+                                                    product.images[0],
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 40,
+                                                child: Container(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  margin: EdgeInsets.all(8),
+                                                  padding: EdgeInsets.only(
+                                                      bottom: 8, top: 5),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Spacer(
+                                                        flex: 1,
+                                                      ),
+                                                      Expanded(
+                                                        flex: 4,
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceAround,
+                                                          children: [
+                                                            Text(
+                                                              "Introducing",
+                                                              style: TextStyle(
+                                                                  fontSize: 14,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                            ),
+                                                            Text(
+                                                              product.name,
+                                                              style: TextStyle(
+                                                                  fontSize: 16,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                          flex: 3,
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    right: 16.0,
+                                                                    top: 8),
+                                                            child:
+                                                                ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              0),
+                                                                  shape: RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8))),
+                                                              onPressed: () {},
+                                                              child: Container(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                width: double
+                                                                    .infinity,
+                                                                height: double
+                                                                    .infinity,
+                                                                decoration: BoxDecoration(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8)),
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        3.0),
+                                                                child: Text(
+                                                                    "Buy Now",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                    )),
+                                                              ),
+                                                            ),
+                                                          ))
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ))
+                                      .toList(),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: Container(
+                                padding: EdgeInsets.all(5),
+                                //color: Colors.amber,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AnimatedSmoothIndicator(
+                                      onDotClicked: (index) =>
+                                          _controller.animateToPage(index),
+                                      activeIndex: serial,
+                                      count: productList.length,
+                                      effect: JumpingDotEffect(
+                                        spacing: 5,
+                                        dotWidth: 8,
+                                        dotHeight: 8,
+                                        dotColor: Colors.grey,
+                                        activeDotColor: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ))
               ],
@@ -138,21 +310,22 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(18),
+                        padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.deepPurple,
+                          // color: Colors.deepPurple,
+                          color: Color(0xffff0eafc),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Icon(
-                          Icons.games,
-                          color: Colors.deepOrange,
-                          size: 24,
+                        child: FaIcon(
+                          FontAwesomeIcons.calendarAlt,
+                          color: Color(0xfff8141ff),
+                          size: 26,
                         ),
                       ),
                       Text(
                         "Category",
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                            fontSize: 16, fontWeight: FontWeight.w500),
                       )
                     ],
                   ),
@@ -160,21 +333,21 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(18),
+                        padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.deepPurple,
+                          color: Color(0xffff0eafc),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Icon(
-                          Icons.games,
-                          color: Colors.deepOrange,
-                          size: 24,
+                        child: FaIcon(
+                          FontAwesomeIcons.balanceScale,
+                          color: Color(0xfffa25eff),
+                          size: 26,
                         ),
                       ),
                       Text(
                         "Compare",
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                            fontSize: 16, fontWeight: FontWeight.w500),
                       )
                     ],
                   ),
@@ -182,21 +355,21 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(18),
+                        padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.deepPurple,
+                          color: Color(0xffff5e6f8),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Icon(
-                          Icons.games,
-                          color: Colors.deepOrange,
-                          size: 24,
+                        child: FaIcon(
+                          FontAwesomeIcons.gift,
+                          color: Color(0xffb225d0),
+                          size: 26,
                         ),
                       ),
                       Text(
                         "Sales Event",
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                            fontSize: 16, fontWeight: FontWeight.w500),
                       )
                     ],
                   ),
@@ -204,21 +377,21 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(18),
+                        padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.deepPurple,
+                          color: Color(0xffffceeea),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Icon(
-                          Icons.games,
+                        child: FaIcon(
+                          FontAwesomeIcons.chessQueen,
                           color: Colors.deepOrange,
-                          size: 24,
+                          size: 26,
                         ),
                       ),
                       Text(
                         "Offer",
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                            fontSize: 16, fontWeight: FontWeight.w500),
                       )
                     ],
                   ),

@@ -137,7 +137,7 @@ Container colorShowContainer(BuildContext context, String link) {
     width: 108,
     clipBehavior: Clip.hardEdge,
     decoration: BoxDecoration(
-      color: Colors.black,
+      //color: Colors.black,
       borderRadius: BorderRadius.circular(12),
     ),
     child: Image.network(

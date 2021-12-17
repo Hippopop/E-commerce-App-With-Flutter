@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductViewPage extends StatefulWidget {
   static const route = "lib\Interface\productview.dart";
@@ -13,6 +15,9 @@ class ProductViewPage extends StatefulWidget {
 }
 
 class _ProductViewPageState extends State<ProductViewPage> {
+  int serial = 0;
+  final CarouselController _controller = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -79,9 +84,28 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                               ),
                                               width: double.infinity,
                                               clipBehavior: Clip.hardEdge,
-                                              child: Image.network(
-                                                product.images[0],
-                                                fit: BoxFit.cover,
+                                              child: CarouselSlider(
+                                                options: CarouselOptions(
+                                                  onPageChanged:
+                                                      (index, reason) {
+                                                    setState(() {
+                                                      serial = index;
+                                                    });
+                                                  },
+                                                  viewportFraction: 1,
+                                                  enlargeCenterPage: true,
+                                                ),
+                                                items: product.images
+                                                    .map(
+                                                      (image) => Container(
+                                                        width: double.infinity,
+                                                        child: Image.network(
+                                                          image,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    )
+                                                    .toList(),
                                               ),
                                             ),
                                           )),
@@ -89,14 +113,55 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                           flex: 1,
                                           child: Container(
                                             margin: const EdgeInsets.only(
-                                              left: 8,
-                                              right: 8,
+                                              left: 12,
+                                              right: 12,
                                               bottom: 8,
                                             ),
                                             width: double.infinity,
                                             //color: Colors.green,
                                             child: Row(
-                                              children: [],
+                                              children: [
+                                                Expanded(
+                                                  flex: 4,
+                                                  child: Container(),
+                                                ),
+                                                Expanded(
+                                                  flex: 8,
+                                                  child: Container(
+                                                    padding: EdgeInsets.all(5),
+                                                    alignment: Alignment.center,
+                                                    //color: Colors.amber,
+                                                    child:
+                                                        AnimatedSmoothIndicator(
+                                                      onDotClicked: (index) =>
+                                                          _controller
+                                                              .animateToPage(
+                                                                  index),
+                                                      activeIndex: serial,
+                                                      count:
+                                                          product.images.length,
+                                                      effect: JumpingDotEffect(
+                                                        spacing: 5,
+                                                        dotWidth: 8,
+                                                        dotHeight: 8,
+                                                        dotColor: Colors.grey,
+                                                        activeDotColor:
+                                                            Colors.black,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 4,
+                                                  child: Container(
+                                                    alignment:
+                                                        Alignment.centerRight,
+                                                    child: Text("${serial + 1}" +
+                                                        r"/" +
+                                                        "${product.images.length}"),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ))
                                     ],
