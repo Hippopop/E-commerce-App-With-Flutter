@@ -388,30 +388,7 @@ class _ProductViewPageState extends State<ProductViewPage> {
                             ),
                             Expanded(
                               flex: 15,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.all(0),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8)),
-                                  ),
-                                  onPressed: () {},
-                                  child: Container(
-                                      width: double.infinity,
-                                      height: 80,
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        gradient: baseGrad,
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "Buy Now",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ))),
+                              child: gradButton(context, 80, double.infinity, "Buy Now", () {},)
                             ),
                           ],
                         ),

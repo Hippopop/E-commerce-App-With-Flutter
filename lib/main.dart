@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/Interface/login.dart';
 import 'package:ecommerce_app/Interface/splashscreen.dart';
 import 'package:ecommerce_app/routes.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.grey,
       ),
       routes: routes,
-      home: SplashScreen(),
+      home: Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white,
+        body: SplashScreen(),
+      ),
     );
   }
 }

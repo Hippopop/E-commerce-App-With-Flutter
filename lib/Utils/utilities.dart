@@ -16,6 +16,37 @@ TextStyle smallSub = TextStyle(
   fontSize: 18,
 );
 
+InputDecoration input = InputDecoration(
+
+);
+
+ElevatedButton gradButton(BuildContext context, double height, double width,
+    String text, final onclick) {
+  return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.all(0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+      onPressed: onclick,
+      child: Container(
+          width: (width == 0) ? null : width,
+          height: (height == 0) ? null : height,
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            gradient: baseGrad,
+          ),
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            ),
+          )));
+}
+
 Container productContainer(BuildContext? context, ProductInfo product) {
   return Container(
     margin: EdgeInsets.only(right: 10),
