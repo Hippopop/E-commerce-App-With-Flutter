@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Utils/grad_button.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -197,16 +198,29 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                 fontWeight: FontWeight.bold, fontSize: 22),
                           ),
                           const Spacer(),
-                          Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 8),
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: const Color(0xffff5f5f5),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: const Icon(
-                              Icons.favorite_border_outlined,
-                              size: 18,
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                product.isFav = !product.isFav;
+                              });
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(horizontal: 8),
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: const Color(0xffff5f5f5),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: (product.isFav)
+                                  ? Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                      size: 18,
+                                    )
+                                  : Icon(
+                                      Icons.favorite_border_outlined,
+                                      size: 18,
+                                    ),
                             ),
                           ),
                           Container(
@@ -387,9 +401,13 @@ class _ProductViewPageState extends State<ProductViewPage> {
                               flex: 1,
                             ),
                             Expanded(
-                              flex: 15,
-                              child: gradButton(context, 80, double.infinity, "Buy Now", () {},)
-                            ),
+                                flex: 15,
+                                child: GradButton(
+                                  height: 80,
+                                  width: double.infinity,
+                                  text: "Buy Now",
+                                  onPress: () {},
+                                )),
                           ],
                         ),
                       ),

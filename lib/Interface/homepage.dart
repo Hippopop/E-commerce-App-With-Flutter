@@ -1,6 +1,8 @@
-import 'package:ecommerce_app/Interface/productview.dart';
+import 'package:ecommerce_app/Interface/cart.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Utils/product_container.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -42,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                         gradient: baseGrad,
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(16),
+                          bottomLeft: const Radius.circular(16),
                           bottomRight: Radius.circular(16),
                         )),
                   ),
@@ -142,125 +144,122 @@ class _HomePageState extends State<HomePage> {
                                     autoPlay: true,
                                   ),
                                   items: productList
-                                      .map((product) => Row(
-                                            children: [
-                                              Expanded(
-                                                flex: 60,
-                                                child: Container(
-                                                  margin: EdgeInsets.all(8),
-                                                  width: double.infinity,
-                                                  height: double.infinity,
-                                                  clipBehavior: Clip.hardEdge,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                  ),
-                                                  child: Image.network(
-                                                    product.images[0],
-                                                    fit: BoxFit.cover,
-                                                  ),
+                                      .map(
+                                        (product) => Row(
+                                          children: [
+                                            Expanded(
+                                              flex: 60,
+                                              child: Container(
+                                                margin: EdgeInsets.all(8),
+                                                width: double.infinity,
+                                                height: double.infinity,
+                                                clipBehavior: Clip.hardEdge,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                ),
+                                                child: Image.network(
+                                                  product.images[0],
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
-                                              Expanded(
-                                                flex: 40,
-                                                child: Container(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  margin: EdgeInsets.all(8),
-                                                  padding: EdgeInsets.only(
-                                                      bottom: 8, top: 5),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Spacer(
-                                                        flex: 1,
+                                            ),
+                                            Expanded(
+                                              flex: 40,
+                                              child: Container(
+                                                alignment: Alignment.centerLeft,
+                                                margin: EdgeInsets.all(8),
+                                                padding: EdgeInsets.only(
+                                                    bottom: 8, top: 5),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Spacer(
+                                                      flex: 1,
+                                                    ),
+                                                    Expanded(
+                                                      flex: 4,
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceAround,
+                                                        children: [
+                                                          Text(
+                                                            "Introducing",
+                                                            style: TextStyle(
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500),
+                                                          ),
+                                                          Text(
+                                                            product.name,
+                                                            style: TextStyle(
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      Expanded(
-                                                        flex: 4,
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceAround,
-                                                          children: [
-                                                            Text(
-                                                              "Introducing",
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
-                                                            Text(
-                                                              product.name,
-                                                              style: TextStyle(
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                          flex: 3,
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    right: 16.0,
-                                                                    top: 8),
-                                                            child:
-                                                                ElevatedButton(
-                                                              style: ElevatedButton.styleFrom(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              0),
-                                                                  shape: RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8))),
-                                                              onPressed: () {},
-                                                              child: Container(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                                width: double
-                                                                    .infinity,
-                                                                height: double
-                                                                    .infinity,
-                                                                decoration: BoxDecoration(
-                                                                    color: Colors
-                                                                        .black,
+                                                    ),
+                                                    Expanded(
+                                                        flex: 3,
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  right: 16.0,
+                                                                  top: 8),
+                                                          child: ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(0),
+                                                                shape: RoundedRectangleBorder(
                                                                     borderRadius:
                                                                         BorderRadius.circular(
-                                                                            8)),
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .all(
-                                                                        3.0),
-                                                                child: Text(
-                                                                    "Buy Now",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: Colors
-                                                                          .white,
-                                                                    )),
-                                                              ),
+                                                                            8))),
+                                                            onPressed: () {},
+                                                            child: Container(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              decoration: BoxDecoration(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8)),
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(3.0),
+                                                              child: Text(
+                                                                  "Buy Now",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Colors
+                                                                        .white,
+                                                                  )),
                                                             ),
-                                                          ))
-                                                    ],
-                                                  ),
+                                                          ),
+                                                        ))
+                                                  ],
                                                 ),
                                               ),
-                                            ],
-                                          ))
+                                            ),
+                                          ],
+                                        ),
+                                      )
                                       .toList(),
                                 ),
                               ),
@@ -268,7 +267,7 @@ class _HomePageState extends State<HomePage> {
                             Expanded(
                               flex: 2,
                               child: Container(
-                                padding: EdgeInsets.all(5),
+                                padding: EdgeInsets.only(bottom: 7),
                                 //color: Colors.amber,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -283,7 +282,7 @@ class _HomePageState extends State<HomePage> {
                                         dotWidth: 8,
                                         dotHeight: 8,
                                         dotColor: Colors.grey,
-                                        activeDotColor: Colors.black,
+                                        activeDotColor: Colors.black54,
                                       ),
                                     ),
                                   ],
@@ -464,26 +463,217 @@ class _HomePageState extends State<HomePage> {
                           bottom: height * 0.020,
                         ),
                         width: 390,
-                        child: ListView(
+                        child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: productList
-                              .map((product) =>
-                                  productContainer(context, product))
-                              .toList(),
+                          // children: productList
+                          //     .map((product) =>
+                          //         productContainer(context, product))
+                          //     .toList(),
+                          itemCount: productList.length,
+                          itemBuilder: (context, index) {
+                            productList[index].id = index;
+                            return ProductContainer(
+                                product: productList[index]);
+                          },
                         ),
                       )),
                   Expanded(
-                    flex: 5,
+                    flex: 6,
                     child: Container(
-                      height: height * 0.10,
-                      width: double.infinity,
+                      height: height * 0.120,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: height * 0.02200, vertical: 0),
+                      //width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(18),
                           topRight: Radius.circular(20),
                         ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          GestureDetector(
+                            child: Container(
+                              margin: EdgeInsets.all(8),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Spacer(
+                                    flex: 1,
+                                  ),
+                                  Expanded(
+                                    flex: 6,
+                                    child: Icon(
+                                      Icons.home_outlined,
+                                      size: 28,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        "Home",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.w500),
+                                      )),
+                                  Spacer(
+                                    flex: 1,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            child: Container(
+                              margin: EdgeInsets.all(8),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Spacer(
+                                    flex: 1,
+                                  ),
+                                  Expanded(
+                                    flex: 6,
+                                    child: Icon(
+                                      Icons.feed_outlined,
+                                      size: 28,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        "Feed",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.w500),
+                                      )),
+                                  Spacer(
+                                    flex: 1,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, CartPage.route);
+                            },
+                            child: Container(
+                              margin: EdgeInsets.all(8),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Spacer(
+                                    flex: 1,
+                                  ),
+                                  Expanded(
+                                    flex: 6,
+                                    child: Icon(
+                                      Icons.shopping_cart_outlined,
+                                      size: 28,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                  Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        "Cart",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.w500),
+                                      )),
+                                  Spacer(
+                                    flex: 1,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            child: Container(
+                              margin: EdgeInsets.all(8),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Spacer(
+                                    flex: 1,
+                                  ),
+                                  Expanded(
+                                    flex: 6,
+                                    child: Stack(
+                                      children: [
+                                        Icon(
+                                          Icons.message_outlined,
+                                          size: 26,
+                                          color: Colors.grey,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        "Message",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.w500),
+                                      )),
+                                  Spacer(
+                                    flex: 1,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            child: Container(
+                              //width: 50,
+                              margin: EdgeInsets.all(8),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Spacer(
+                                    flex: 1,
+                                  ),
+                                  Expanded(
+                                    flex: 6,
+                                    child: Stack(
+                                      clipBehavior: Clip.hardEdge,
+                                      children: [
+                                        Icon(
+                                          Icons.perm_identity_rounded,
+                                          size: 28,
+                                          color: Colors.grey,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                      flex: 2,
+                                      child: Text(
+                                        "User",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.w500),
+                                      )),
+                                  Spacer(
+                                    flex: 1,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

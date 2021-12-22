@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/Interface/cart.dart';
 import 'package:ecommerce_app/Interface/homepage.dart';
 import 'package:flutter/material.dart';
 import 'Interface/login.dart';
@@ -8,4 +9,8 @@ final Map<String,WidgetBuilder> routes = {
 LogInPage.route:(context) => const LogInPage(),
 HomePage.route:(context) => const HomePage(),
 ProductViewPage.route: (context) => const ProductViewPage(),
+CartPage.route: (context) => const CartPage(),
 };
+
+
+

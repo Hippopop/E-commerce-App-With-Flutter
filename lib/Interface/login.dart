@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/Interface/homepage.dart';
 import 'package:ecommerce_app/Interface/splashscreen.dart';
+import 'package:ecommerce_app/Utils/grad_button.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 
@@ -118,7 +119,7 @@ class _LogInPageState extends State<LogInPage> {
                       Container(
                           width: double.infinity,
                           height: (height * 0.075),
-                          child: gradButton(context, 0, 0, "Log in", () {
+                          child: GradButton(text: "Log in", onPress: () {
                             Navigator.pushNamed(context, HomePage.route);
                           })),
                     ],

@@ -12,13 +12,15 @@ LinearGradient baseGrad = LinearGradient(
   end: Alignment.centerRight,
 );
 
+Color bgColor = Color(0xffff0f4fe);
+
+
 TextStyle smallSub = TextStyle(
   fontSize: 18,
 );
 
-InputDecoration input = InputDecoration(
-
-);
+InputDecoration input = InputDecoration();
+/*
 
 ElevatedButton gradButton(BuildContext context, double height, double width,
     String text, final onclick) {
@@ -46,7 +48,8 @@ ElevatedButton gradButton(BuildContext context, double height, double width,
             ),
           )));
 }
-
+*/
+/*
 Container productContainer(BuildContext? context, ProductInfo product) {
   return Container(
     margin: EdgeInsets.only(right: 10),
@@ -88,9 +91,19 @@ Container productContainer(BuildContext? context, ProductInfo product) {
                 Positioned(
                     top: 12,
                     right: 12,
-                    child: Icon(
-                      Icons.favorite,
-                      color: Colors.red,
+                    child: GestureDetector(
+                      onTap: () {
+                        //setState(() {});
+                      },
+                      child: (product.isFav)
+                          ? Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            )
+                          : Icon(
+                              Icons.favorite_outline_rounded,
+                              color: Colors.grey,
+                            ),
                     ))
               ],
             )),
@@ -158,7 +171,7 @@ Container productContainer(BuildContext? context, ProductInfo product) {
       ],
     ),
   );
-}
+}*/
 
 Container colorShowContainer(BuildContext context, String link) {
   return Container(

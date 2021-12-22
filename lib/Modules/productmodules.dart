@@ -1,15 +1,17 @@
-import 'package:flutter/material.dart';
 
 class ProductInfo {
-  final int id;
+   int id;
   final String name;
   final int price;
   final String description;
   final List<String> images;
   final List<String> sizes;
+   bool isFav = false;
+   int onCart = 0;
+   int onStock = 100;
 
   ProductInfo(
-      {required this.id,
+      {this.id = 000,
       required this.name,
       required this.price,
       required this.description,
@@ -29,7 +31,6 @@ List<ProductInfo> cart = [];
 
 List<ProductInfo> productList = [
   ProductInfo(
-      id: 01,
       name: "Mockup Shoes ",
       price: 150,
       description:
@@ -52,7 +53,6 @@ List<ProductInfo> productList = [
         "11.5"
       ]),
   ProductInfo(
-      id: 02,
       name: "Mockup Dress",
       price: 150,
       description:
