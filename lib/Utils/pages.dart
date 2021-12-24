@@ -1,4 +1,7 @@
 enum Pages {
-  Home,
-
+  home,
+  store,
+  cart,
+  favorites,
+  user,
 }

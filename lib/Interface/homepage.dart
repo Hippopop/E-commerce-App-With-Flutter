@@ -1,5 +1,10 @@
 import 'package:ecommerce_app/Interface/cart.dart';
+import 'package:ecommerce_app/Interface/favorites.dart';
+import 'package:ecommerce_app/Interface/productspage.dart';
+import 'package:ecommerce_app/Interface/user_page.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Utils/bottom_navigation.dart';
+import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:ecommerce_app/Utils/product_container.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,6 +22,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Pages current = Pages.home;
   final CarouselController _controller = CarouselController();
   int serial = 0;
   @override
@@ -480,202 +486,7 @@ class _HomePageState extends State<HomePage> {
                       )),
                   Expanded(
                     flex: 6,
-                    child: Container(
-                      height: height * 0.120,
-                      padding: EdgeInsets.symmetric(
-                          horizontal: height * 0.02200, vertical: 0),
-                      //width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(18),
-                          topRight: Radius.circular(20),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          GestureDetector(
-                            child: Container(
-                              margin: EdgeInsets.all(8),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                  Expanded(
-                                    flex: 6,
-                                    child: Icon(
-                                      Icons.home_outlined,
-                                      size: 28,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        "Home",
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w500),
-                                      )),
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            child: Container(
-                              margin: EdgeInsets.all(8),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                  Expanded(
-                                    flex: 6,
-                                    child: Icon(
-                                      Icons.feed_outlined,
-                                      size: 28,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        "Feed",
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w500),
-                                      )),
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, CartPage.route);
-                            },
-                            child: Container(
-                              margin: EdgeInsets.all(8),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                  Expanded(
-                                    flex: 6,
-                                    child: Icon(
-                                      Icons.shopping_cart_outlined,
-                                      size: 28,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        "Cart",
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w500),
-                                      )),
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            child: Container(
-                              margin: EdgeInsets.all(8),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                  Expanded(
-                                    flex: 6,
-                                    child: Stack(
-                                      children: [
-                                        Icon(
-                                          Icons.message_outlined,
-                                          size: 26,
-                                          color: Colors.grey,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        "Message",
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w500),
-                                      )),
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            child: Container(
-                              //width: 50,
-                              margin: EdgeInsets.all(8),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                  Expanded(
-                                    flex: 6,
-                                    child: Stack(
-                                      clipBehavior: Clip.hardEdge,
-                                      children: [
-                                        Icon(
-                                          Icons.perm_identity_rounded,
-                                          size: 28,
-                                          color: Colors.grey,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        "User",
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.grey,
-                                            fontWeight: FontWeight.w500),
-                                      )),
-                                  Spacer(
-                                    flex: 1,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    child: cBottomNavigationBar(height: height, current: current),
                   ),
                 ],
               ),

@@ -7,7 +7,9 @@ final onPress;
 String text;
 double? height;
 double? width;
-GradButton( { Key? key, this.height, this.width, required this.text, required this.onPress}) : super(key: key);
+Color? color;
+double? fontSize;
+GradButton( { Key? key, this.height, this.width, required this.text, required this.onPress, Color? this.color, double? this.fontSize}) : super(key: key);
   @override
   _GradButtonState createState() => _GradButtonState();
 }
@@ -28,14 +30,15 @@ class _GradButtonState extends State<GradButton> {
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              gradient: baseGrad,
+               gradient: (widget.color == null)?baseGrad : null ,
+              color: widget.color,
             ),
             child: Center(
               child: Text(
                 widget.text,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: (widget.fontSize == null)?18 : widget.fontSize,
                     fontWeight: FontWeight.bold),
               ),
             )));

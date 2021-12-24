@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/Interface/homepage.dart';
-import 'package:ecommerce_app/Interface/splashscreen.dart';
+import 'package:ecommerce_app/Interface/registration.dart';
 import 'package:ecommerce_app/Utils/grad_button.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
-  final mailController = TextEditingController();
+  final userController = TextEditingController();
   final passController = TextEditingController();
   bool obsecure = true;
   String active = "blocked";
@@ -25,21 +25,23 @@ class _LogInPageState extends State<LogInPage> {
     // TODO: implement initState
     super.initState();
 
-    mailController.addListener(() {
+    userController.addListener(() {
       setState(() {});
     });
-    mailController.addListener(() {
+    userController.addListener(() {
       setState(() {});
     });
   }
-
+FocusNode user = FocusNode();
+FocusNode pass = FocusNode();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
+      //resizeToAvoidBottomInset: false,
       body: Container(
         padding: EdgeInsets.symmetric(
             vertical: (height * 0.050), horizontal: (width * 0.050)),
@@ -48,7 +50,7 @@ class _LogInPageState extends State<LogInPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
-              flex: 5,
+              flex: 4,
               child: Image.asset("Assets/images/undraw_Welcome_re_h3d9.png"),
             ),
             Expanded(
@@ -59,59 +61,60 @@ class _LogInPageState extends State<LogInPage> {
                 child: Container(
                   height: height * 0.5,
                   padding: EdgeInsets.symmetric(
-                      vertical: (height * 0.040), horizontal: (width * 0.050)),
+                      vertical: (height * 0.0250), horizontal: (width * 0.050)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Center(
-                        child: Text("Have an account??"),
+                        child: Text((active == "blocked")
+                            ?"Have an account??": "Welcome back!"),
                       ),
 
-                      TextField(
+                      (active != "blocked")
+                          ?Text(active.toUpperCase(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500,), ): SizedBox(),
+
+                      (active == "blocked")
+                          ?TextField(
                         onSubmitted: (input) {
                           setState(() {
                             active = input;
                           });
                         },
-                        controller: mailController,
-                        decoration: InputDecoration(
+                        focusNode: user,
+                        controller: userController,
+                        decoration: inStyle.copyWith(
                           labelText: "User",
                           prefixIcon: Icon(
                             Icons.account_circle_rounded,
                             size: 24,
                           ),
-                          suffixIcon: IconButton(
-                            icon: Icon(Icons.cancel),
-                            onPressed: () {
-                              setState(() {
-                                active = "blocked";
-                                mailController.clear();
-                              });
-                            },
-                          ),
+                          suffixIcon: GestureDetector(
+                              onTap:  () {
+                                user.unfocus();
+                                setState(() {
+                                  active = "blocked";
+                                  userController.clear();
+                                });
+                              },
+                              child: Icon(Icons.cancel)),
                         ),
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.next,
-                      ),
-
-                      //SizedBox(height: (height*0.050),),
-                      (active == "blocked")
-                          ? Container()
+                      )
                           : TextField(
+                        focusNode: pass,
                               controller: passController,
                               obscureText: obsecure,
                               decoration: InputDecoration(
                                 labelText: "Password",
                                 prefixIcon: Icon(Icons.lock),
-                                suffixIcon: IconButton(
-                                  icon: obsecure
-                                      ? Icon(Icons.visibility)
-                                      : Icon(Icons.visibility_off),
-                                  onPressed: () {
-                                    setState(() {
-                                      obsecure = !obsecure;
-                                    });
+                                suffixIcon: GestureDetector(
+                                  onTap:  () {setState(() {
+                                    obsecure = !obsecure;
+                                  });
                                   },
+                                  child: Icon((obsecure)
+                                      ?Icons.visibility: Icons.visibility_off),
                                 ),
                               ),
                             ),
@@ -119,61 +122,72 @@ class _LogInPageState extends State<LogInPage> {
                       Container(
                           width: double.infinity,
                           height: (height * 0.075),
-                          child: GradButton(text: "Log in", onPress: () {
-                            Navigator.pushNamed(context, HomePage.route);
-                          })),
+                          child: (active == "blocked")
+                              ? GradButton(text: "Go", onPress: (){
+                                if(userController.text == "") {
+                                  user.requestFocus();
+                                } else {
+                                  setState(() {
+                                    active = userController.text;
+                                    userController.clear();
+                                  });
+                                }
+
+
+                          }) : GradButton(
+                              text: "Log in",
+                              onPress: () {
+                                if(passController.text == "") {
+                                  pass.requestFocus();
+                                } else {
+                                  Navigator.pushNamed(context, HomePage.route);
+                                }
+                              },
+                          ),
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
             Expanded(
-              flex: 1,
-              child: (active == "blocked")
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          "Create an account  ",
-                          style: TextStyle(color: Colors.black54),
-                        ),
-                        Container(
-                            decoration: BoxDecoration(),
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  //Navigator.pushNamed(context, RegisterPage.routeName);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  elevation: 10,
-                                ),
-                                child: Text(
-                                  "Register",
-                                  style: TextStyle(color: Colors.white),
-                                ))),
-                      ],
-                    )
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          "Forgot Password??  ",
-                          style: TextStyle(color: Colors.black54),
-                        ),
-                        Container(
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  //Navigator.pushNamed(context, Password.routeName);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  elevation: 10,
-                                ),
-                                child: Text(
-                                  "Get Help!",
-                                  style: TextStyle(color: Colors.white),
-                                ))),
-                      ],
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      (active == "blocked")
+                          ? "Create an account  "
+                          : "Forgot Password??  ",
+                      style: TextStyle(color: Colors.black54),
                     ),
-            )
+                    ElevatedButton(
+                        onPressed: () {
+                          if(active == "blocked"){
+                            Navigator.pushNamed(context, RegistrationForm.route);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 10,
+                          padding: EdgeInsets.all(0),
+                        ),
+                        child: Container(
+                          height: 40,
+                          width: 80,
+                           decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              //gradient: baseGrad,
+                             color: Colors.grey,
+                            ),
+                          child: Center(
+                            child: Text(
+                              (active == "blocked") ? "Register" : "Get Help!",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        )),
+                  ],
+                ))
           ],
         ),
       ),

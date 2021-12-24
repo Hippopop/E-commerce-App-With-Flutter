@@ -6,6 +6,7 @@ class ProductContainer extends StatefulWidget {
   ProductInfo product;
   ProductContainer({Key? key, required this.product}) : super(key: key);
 
+
   @override
   _ProductContainerState createState() => _ProductContainerState();
 }
@@ -29,8 +30,7 @@ class _ProductContainerState extends State<ProductContainer> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, ProductViewPage.route,
-                          arguments: widget.product);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProductViewPage(product: widget.product)));
                     },
                     child: Hero(
                       tag: widget.product.id,
@@ -114,17 +114,39 @@ class _ProductContainerState extends State<ProductContainer> {
                               fontSize: 18,
                             ),
                           ),
-                          Container(
-                            padding: EdgeInsets.all(5),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: Colors.black,
-                                )),
-                            child: Icon(
-                              Icons.add,
-                              size: 16,
+                          GestureDetector(
+                            onTap: (){
+                              if(!widget.product.onCart){
+                                setState(() {
+
+                                  widget.product.onCart = true;
+                                  widget.product.cartCount = 1;
+                                  cart.add(widget.product);
+                                });
+                              } else {
+                                setState(() {
+                                  widget.product.onCart = false;
+                                  widget.product.cartCount = 0;
+                                  cart.remove(widget.product);
+                                });
+                              }
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    width: 0.8,
+                                    color: Colors.black,
+                                  )),
+                              child: (!widget.product.onCart)? Icon(
+                                Icons.add,
+                                size: 16,
+                              ) : Icon(
+                                Icons.done_all_sharp,
+                                color: Colors.blue,
+                                size: 16,
+                              ),
                             ),
                           )
                         ],

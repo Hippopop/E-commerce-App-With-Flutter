@@ -13,13 +13,13 @@ LinearGradient baseGrad = LinearGradient(
 );
 
 Color bgColor = Color(0xffff0f4fe);
+//Color bgColor = Color(0xffff5f5f5);
 
 
 TextStyle smallSub = TextStyle(
   fontSize: 18,
 );
 
-InputDecoration input = InputDecoration();
 /*
 
 ElevatedButton gradButton(BuildContext context, double height, double width,
@@ -209,3 +209,34 @@ Container sizeShowingBox(BuildContext context, String size) {
     )),
   );
 }
+
+
+InputDecoration inStyle = InputDecoration(
+filled: true,
+border: OutlineInputBorder(
+borderSide: BorderSide(),
+borderRadius: BorderRadius.circular(50),
+),
+focusedBorder: OutlineInputBorder(
+borderSide: BorderSide(
+color: Colors.black,
+width: 2.5,
+),
+// borderRadius: BorderRadius.circular(50),
+),
+enabledBorder: OutlineInputBorder(
+borderSide: BorderSide(
+color: Colors.transparent,
+width: 1.5,
+),
+
+),
+fillColor: Color(0x444F2F3F5),
+floatingLabelStyle: TextStyle(
+fontWeight: FontWeight.bold,
+color: Colors.black,
+fontSize: 20,
+),
+
+focusColor: Colors.blue,
+);
