@@ -85,7 +85,7 @@ class cBottomNavigationBar extends StatelessWidget {
                   Expanded(
                     flex: 6,
                     child: Icon(
-                      Icons.border_all_rounded,
+                      Icons.store,
                       size: 28,
                       color: (current== Pages.store)? Colors.purpleAccent: Colors.grey,
                     ),

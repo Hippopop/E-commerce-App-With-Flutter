@@ -84,12 +84,12 @@ Pages current = Pages.store;
                     floating: true,
                     backgroundColor: Colors.transparent,
                     automaticallyImplyLeading: false,
-                    expandedHeight: 150,
+                    expandedHeight: 120,
                     flexibleSpace: FlexibleSpaceBar(
                       collapseMode: CollapseMode.pin,
 
                       background: Container(
-                        height: 360,
+                        height: 330,
                         padding: EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
                           gradient: baseGrad,
@@ -101,7 +101,7 @@ Pages current = Pages.store;
                         child: SafeArea(
                           child: Center(child: Column(
                             children: [
-                              SizedBox(height: 80,),
+                              SizedBox(height: 50,),
                               TextField(
                                 style: TextStyle(
                                   fontSize: 14,

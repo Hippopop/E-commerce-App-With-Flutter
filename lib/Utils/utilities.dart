@@ -219,7 +219,7 @@ borderRadius: BorderRadius.circular(50),
 ),
 focusedBorder: OutlineInputBorder(
 borderSide: BorderSide(
-color: Colors.black,
+color: Colors.grey,
 width: 2.5,
 ),
 // borderRadius: BorderRadius.circular(50),

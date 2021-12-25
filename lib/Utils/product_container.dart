@@ -55,10 +55,17 @@ class _ProductContainerState extends State<ProductContainer> {
                       right: 12,
                       child: GestureDetector(
                         onTap: () {
-                          setState(() {
-                            widget.product.isFav = !widget.product.isFav;
-                            favoriteProducts.add(widget.product);
-                          });
+                          if(!widget.product.isFav){
+                            setState(() {
+                              widget.product.isFav = !widget.product.isFav;
+                              favoriteProducts.add(widget.product);
+                            }) ;
+                          } else {
+                            setState(() {
+                              widget.product.isFav = !widget.product.isFav;
+                              favoriteProducts.remove(widget.product);
+                            }) ;
+                          }
                         },
                         child: (widget.product.isFav)
                             ? Icon(

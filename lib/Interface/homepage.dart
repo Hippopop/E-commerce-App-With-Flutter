@@ -1,7 +1,4 @@
-import 'package:ecommerce_app/Interface/cart.dart';
-import 'package:ecommerce_app/Interface/favorites.dart';
-import 'package:ecommerce_app/Interface/productspage.dart';
-import 'package:ecommerce_app/Interface/user_page.dart';
+
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Utils/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
@@ -30,6 +27,7 @@ class _HomePageState extends State<HomePage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

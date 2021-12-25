@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:ecommerce_app/Interface/cart.dart';
 import 'package:ecommerce_app/Interface/homepage.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Utils/grad_button.dart';
@@ -205,9 +206,17 @@ class _ProductViewPageState extends State<ProductViewPage> {
                             const Spacer(),
                             GestureDetector(
                               onTap: () {
-                                setState(() {
-                                  product.isFav = !product.isFav;
-                                });
+                                if(!widget.product.isFav){
+                                  setState(() {
+                                    widget.product.isFav = !widget.product.isFav;
+                                    favoriteProducts.add(widget.product);
+                                  }) ;
+                                } else {
+                                  setState(() {
+                                    widget.product.isFav = !widget.product.isFav;
+                                    favoriteProducts.remove(widget.product);
+                                  }) ;
+                                }
                               },
                               child: Container(
                                 margin: const EdgeInsets.symmetric(horizontal: 8),
@@ -373,11 +382,24 @@ class _ProductViewPageState extends State<ProductViewPage> {
                       Expanded(
                         flex: 14,
                         child: Container(
-                          child: Row(
+                          child: (product.onCart)? GradButton(
+                            height: 80,
+                            width: double.infinity,
+                            text: "Buy Now",
+                            onPress: () {
+                              Navigator.pushNamed(context, CartPage.route);
+                            },
+                          ) : Row(
                             children: [
                               Expanded(
                                 flex: 15,
-                                child: GradButton(text: "Add To Cart", onPress: (){}, color: Colors.grey[400],)
+                                child: GradButton(text:"Add To Cart", onPress: (){
+setState(() {
+  product.onCart = true;
+  product.cartCount = 1;
+  cart.add(product);
+});
+                                }, color: Colors.grey[400],)
                               ),
                               Spacer(
                                 flex: 1,
@@ -388,7 +410,14 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                     height: 80,
                                     width: double.infinity,
                                     text: "Buy Now",
-                                    onPress: () {},
+                                    onPress: () {
+                                      setState(() {
+                                        product.onCart = true;
+                                        product.cartCount = 1;
+                                        cart.add(product);
+                                      });
+                                      Navigator.pushNamed(context, CartPage.route);
+                                    },
                                   )),
                             ],
                           ),
