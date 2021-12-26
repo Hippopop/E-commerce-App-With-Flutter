@@ -1,7 +1,11 @@
 import 'package:ecommerce_app/Interface/homepage.dart';
 import 'package:ecommerce_app/Interface/registration.dart';
+import 'package:ecommerce_app/Interface/splashscreen.dart';
+import 'package:ecommerce_app/Utils/User_storage.dart';
 import 'package:ecommerce_app/Utils/grad_button.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
+import 'package:ecommerce_app/main.dart';
+import 'package:ecommerce_app/routes.dart';
 import 'package:flutter/material.dart';
 
 class LogInPage extends StatefulWidget {
@@ -18,6 +22,7 @@ class _LogInPageState extends State<LogInPage> {
   final passController = TextEditingController();
   bool obsecure = true;
   String active = "blocked";
+  bool validate = false;
 
   @override
   void initState() {
@@ -84,6 +89,7 @@ FocusNode pass = FocusNode();
                         controller: userController,
                         decoration: inStyle.copyWith(
                           labelText: "User",
+                          errorText: validate? "Please enter the right user name!": null,
                           prefixIcon: Icon(
                             Icons.account_circle_rounded,
                             size: 24,
@@ -107,6 +113,7 @@ FocusNode pass = FocusNode();
                               obscureText: obsecure,
                               decoration: InputDecoration(
                                 labelText: "Password",
+                                errorText: validate?"Wrong Password": null,
                                 prefixIcon: Icon(Icons.lock),
                                 suffixIcon: GestureDetector(
                                   onTap:  () {setState(() {
@@ -124,16 +131,20 @@ FocusNode pass = FocusNode();
                           height: (height * 0.075),
                           child: (active == "blocked")
                               ? GradButton(text: "Go", onPress: (){
-                                if(userController.text == "") {
-                                  user.requestFocus();
-                                } else {
-                                  setState(() {
-                                    active = userController.text;
-                                    userController.clear();
-                                    user.unfocus();
-                                   // userController.dispose();
-                                  });
-                                }
+    if(userController.text == "") {
+    user.requestFocus();
+    } if(userController.text == SplashScreen.currentUser.name){
+setState(() {
+  active = userController.text;
+  user.unfocus();
+});
+    }
+    else {
+    setState(() {
+    validate = true;
+    });
+    }
+
 
 
                           }) : GradButton(
@@ -141,8 +152,13 @@ FocusNode pass = FocusNode();
                               onPress: () {
                                 if(passController.text == "") {
                                   pass.requestFocus();
-                                } else {
+                                } if(passController.text == SplashScreen.currentUser.pass){
                                   Navigator.pushNamed(context, HomePage.route);
+                                }
+                                else {
+                                  setState(() {
+                                    validate = true;
+                                  });
                                 }
                               },
                           ),

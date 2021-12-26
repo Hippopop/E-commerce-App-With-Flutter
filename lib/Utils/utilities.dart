@@ -1,4 +1,4 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 LinearGradient baseGrad = LinearGradient(
@@ -239,6 +239,5 @@ fontSize: 20,
 
 focusColor: Colors.blue,
 );
-
 
 

@@ -1,21 +1,34 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:ecommerce_app/Interface/homepage.dart';
 import 'package:ecommerce_app/Interface/login.dart';
-import 'package:ecommerce_app/Utils/utilities.dart';
+import 'package:ecommerce_app/Interface/registration.dart';
+import 'package:ecommerce_app/Utils/User_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'login.dart';
 import 'dart:async';
+class SplashScreen extends StatefulWidget {
+  static var currentUser = ((DataHandler.loadData()))?? User("name", "email", "phone", "img"," pass");
+/*
+ static UserStorage user = UserStorage(currentUser: DataHandler.loadData());
+*/
+  SplashScreen({Key? key}) : super(key: key);
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
 
+class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 4), () {
-      Navigator.pushReplacementNamed(context, LogInPage.route);
+      if(SplashScreen.currentUser.name == "name"){
+        Navigator.pushReplacementNamed(context, RegistrationForm.route);
+
+      } else {
+        //currentUser = user;
+        Navigator.pushReplacementNamed(context, LogInPage.route);
+      }
     });
 
     return Scaffold(

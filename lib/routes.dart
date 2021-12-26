@@ -8,6 +8,7 @@ import 'package:ecommerce_app/Interface/user_page.dart';
 import 'package:flutter/material.dart';
 import 'Interface/login.dart';
 import 'Interface/productview.dart';
+import 'Utils/User_storage.dart';
 
 
 final Map<String,WidgetBuilder> routes = {
@@ -21,5 +22,4 @@ UserPage.route: (context) => const UserPage(),
 ProductAdder.route: (context) => const ProductAdder(),
 };
 
-
-
+ late User currentUser ;

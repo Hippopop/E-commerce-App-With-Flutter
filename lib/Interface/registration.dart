@@ -1,3 +1,6 @@
+import 'package:ecommerce_app/Interface/homepage.dart';
+import 'package:ecommerce_app/Interface/splashscreen.dart';
+import 'package:ecommerce_app/Utils/User_storage.dart';
 import 'package:ecommerce_app/Utils/grad_button.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +19,32 @@ class _RegistrationFormState extends State<RegistrationForm> {
   final mailCont = TextEditingController();
   final phoneCont = TextEditingController();
   final passCont = TextEditingController();
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    nameCont.addListener(() {
+      setState(() {
+      });
+    });
+    mailCont.addListener(() {
+      setState(() {
+
+      });
+    });
+    phoneCont.addListener(() {
+      setState(() {
+
+      });
+    });
+    passCont.addListener(() {
+      setState(() {
+
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +115,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               MainAxisAlignment.spaceAround,
                                           children: [
                                             TextFormField(
+                                              controller: nameCont,
                                               validator: (name) {
                                                 if (name!.isEmpty ||
                                                     name == null) {
@@ -157,7 +187,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                                 ),
                                               ),
                                               keyboardType:
-                                                  TextInputType.emailAddress,
+                                                  TextInputType.number,
                                               textInputAction:
                                                   TextInputAction.next,
                                             ),
@@ -216,14 +246,17 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                     )),
                                 Expanded(
                                   flex: 1,
-                                  child: Container(
-                                    child: GradButton(
-                                        text: "Submit",
-                                        onPress: () {
-                                          if (formKey.currentState!
-                                              .validate()) {}
-                                        }),
-                                  ),
+                                  child: GradButton(
+                                      text: "Submit",
+                                      onPress: () async{
+                                        if (formKey.currentState!
+                                            .validate()) {
+                                          User me = User(nameCont.text, mailCont.text, phoneCont.text, "", passCont.text);
+                                          DataHandler.saveData(me);
+                                          Navigator.pushReplacementNamed(context, HomePage.route);
+                                          SplashScreen.currentUser = me;
+                                        }
+                                      }),
                                 ),
                               ],
                             ),

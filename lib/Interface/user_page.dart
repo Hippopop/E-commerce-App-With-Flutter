@@ -1,8 +1,12 @@
 import 'package:ecommerce_app/Interface/product_adder.dart';
+import 'package:ecommerce_app/Interface/registration.dart';
+import 'package:ecommerce_app/Interface/splashscreen.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Utils/User_storage.dart';
 import 'package:ecommerce_app/Utils/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
+import 'package:ecommerce_app/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -113,7 +117,7 @@ class _UserPageState extends State<UserPage> {
                                                       ),
                                                       children: [
                                                         TextSpan(
-                                                          text: "Username",
+                                                          text: SplashScreen.currentUser.name,
                                                           style: TextStyle(
                                                             fontSize: 16,
                                                             color: bgColor,
@@ -157,16 +161,31 @@ class _UserPageState extends State<UserPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Container(
-                                          padding: EdgeInsets.all(6),
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Color(0xdddfffff),
-                                          ),
-                                          child: Icon(
-                                            Icons.logout,
-                                            color: Colors.red[400],
-                                            size: 17,
+                                        GestureDetector(
+                                          onTap:() { final snackBar = SnackBar(
+                                            duration: Duration(milliseconds: 50000),
+                                            content: const Text('You sure you want to logout??'),
+                                            action: SnackBarAction(
+                                              label: "Yes.",
+                                              onPressed: (){
+                                                DataHandler.clearAllData();
+                                                Navigator.pushReplacementNamed(context, RegistrationForm.route);
+                                              },
+                                            ),
+
+                                          );
+                                          ScaffoldMessenger.of(context).showSnackBar(snackBar);},
+                                          child: Container(
+                                            padding: EdgeInsets.all(6),
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Color(0xdddfffff),
+                                            ),
+                                            child: Icon(
+                                              Icons.logout,
+                                              color: Colors.red[400],
+                                              size: 17,
+                                            ),
                                           ),
                                         ),
                                         Container(
