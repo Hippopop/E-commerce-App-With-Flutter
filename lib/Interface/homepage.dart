@@ -6,13 +6,12 @@ import 'package:ecommerce_app/Utils/product_container.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
   static final route = "/Interface/homepage";
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -22,6 +21,8 @@ class _HomePageState extends State<HomePage> {
   Pages current = Pages.home;
   final CarouselController _controller = CarouselController();
   int serial = 0;
+
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -127,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                       margin: EdgeInsets.symmetric(horizontal: height * 0100),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
-                      child: Container(
+                      child: SizedBox(
                         height: height * 0.200,
                         width: width * 0.9,
                         child: Column(
@@ -313,16 +314,16 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           // color: Colors.deepPurple,
                           color: Color(0xffff0eafc),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: FaIcon(
-                          FontAwesomeIcons.calendarAlt,
+                        child: Icon(
+                          Icons.category_rounded,
                           color: Color(0xfff8141ff),
-                          size: 26,
+                          size: 32,
                         ),
                       ),
                       Text(
@@ -336,15 +337,15 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           color: Color(0xffff0eafc),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: FaIcon(
-                          FontAwesomeIcons.balanceScale,
+                        child: Icon(
+                          Icons.compare,
                           color: Color(0xfffa25eff),
-                          size: 26,
+                          size: 32,
                         ),
                       ),
                       Text(
@@ -358,15 +359,15 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           color: Color(0xffff5e6f8),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: FaIcon(
-                          FontAwesomeIcons.gift,
+                        child: Icon(
+                          Icons.emoji_events_rounded,
                           color: Color(0xffb225d0),
-                          size: 26,
+                          size: 32,
                         ),
                       ),
                       Text(
@@ -380,15 +381,15 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(16),
+                        padding: EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           color: Color(0xffffceeea),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: FaIcon(
-                          FontAwesomeIcons.chessQueen,
+                        child: Icon(
+                          Icons.local_fire_department_rounded,
                           color: Colors.deepOrange,
-                          size: 26,
+                          size: 32,
                         ),
                       ),
                       Text(
@@ -468,6 +469,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         width: 390,
                         child: ListView.builder(
+                          //reverse: true,
                           scrollDirection: Axis.horizontal,
                           //mainAxisAlignment: MainAxisAlignment.spaceAround,
                           // children: productList
@@ -478,7 +480,7 @@ class _HomePageState extends State<HomePage> {
                           itemBuilder: (context, index) {
                             productList[index].id = index;
                             return ProductContainer(
-                                product: productList[index]);
+                                product:  productList[index], current: current,);
                           },
                         ),
                       )),

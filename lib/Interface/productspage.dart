@@ -140,7 +140,7 @@ Pages current = Pages.store;
                       crossAxisCount: 2,
                       childAspectRatio: 0.8,
                       children: productList.map((product) {
-                        return ProductContainer(product: product);
+                        return ProductContainer(product: product, current: current,);
 
                       }).toList(),),
                   )

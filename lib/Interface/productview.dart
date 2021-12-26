@@ -2,8 +2,11 @@ import 'dart:math';
 
 import 'package:ecommerce_app/Interface/cart.dart';
 import 'package:ecommerce_app/Interface/homepage.dart';
+import 'package:ecommerce_app/Interface/productspage.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Utils/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/grad_button.dart';
+import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -11,7 +14,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductViewPage extends StatefulWidget {
   ProductInfo product;
-  ProductViewPage({Key? key, required this.product}) : super(key: key);
+  Pages current;
+  ProductViewPage({Key? key, required this.product, required this.current}) : super(key: key);
 
   @override
   _ProductViewPageState createState() => _ProductViewPageState();
@@ -28,8 +32,14 @@ class _ProductViewPageState extends State<ProductViewPage> {
     final ProductInfo product = widget.product;
     return WillPopScope(
       onWillPop: (){
-        Navigator.pushNamed(context, HomePage.route);
-        //Navigator.popAndPushNamed(context, HomePage.route);
+if(widget.current == Pages.store) {
+  Navigator.pushNamed(context, ProductsPage.route);
+} if(widget.current == Pages.home) {
+  Navigator.pushNamed(context, HomePage.route);
+} if(widget.current == Pages.cart) {
+  Navigator.pushNamed(context, CartPage.route);
+}
+
         return Future.value(false);
       },
       child: Scaffold(
@@ -216,6 +226,15 @@ class _ProductViewPageState extends State<ProductViewPage> {
                                     widget.product.isFav = !widget.product.isFav;
                                     favoriteProducts.remove(widget.product);
                                   }) ;
+                                }
+                                if(favoriteProducts.length == 0) {
+                                  navState.setState(() {
+                                    navState.favOn = false;
+                                  });
+                                } else {
+                                  navState.setState(() {
+                                    navState.favOn = true;
+                                  });
                                 }
                               },
                               child: Container(

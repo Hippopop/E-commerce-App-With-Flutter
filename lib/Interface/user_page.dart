@@ -1,12 +1,10 @@
 import 'package:ecommerce_app/Interface/product_adder.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Utils/bottom_navigation.dart';
-import 'package:ecommerce_app/Utils/grad_button.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class UserPage extends StatefulWidget {
   static final route = "/Interface/user_page";
@@ -321,7 +319,7 @@ class _UserPageState extends State<UserPage> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(r"5",
+                                                Text(ordered.length.toString(),
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 24,
@@ -353,7 +351,7 @@ class _UserPageState extends State<UserPage> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text("5",
+                                                Text("0",
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 24,
@@ -404,7 +402,7 @@ class _UserPageState extends State<UserPage> {
                                             children: [
                                               Icon(
                                                 Icons.category_outlined,
-                                                color: Color(0xfff8141ff),                                                size: 24,
+                                                color: Color(0xffb225d0),                                                size: 24,
                                               ),
                                               Text(
                                                 "Category",
@@ -431,7 +429,7 @@ class _UserPageState extends State<UserPage> {
                                             children: [
                                               Icon(
                                                 Icons.reviews_rounded,
-                                                color: Color(0xffb225d0),                                                size: 24,
+                                                color:  Color(0xfff8141ff),                                                size: 24,
                                               ),
                                               Text(
                                                 "Reviews",
@@ -525,7 +523,7 @@ class _UserPageState extends State<UserPage> {
                                             children: [
                                               Icon(
                                                 Icons.payment_rounded,
-                                                color: Color(0xfff8141ff),
+                                                color: Colors.deepOrange[500],
                                                 size: 24,
                                               ),
                                               Text(
@@ -553,7 +551,7 @@ class _UserPageState extends State<UserPage> {
                                             children: [
                                               Icon(
                                                 Icons.help_center_rounded,
-                                                color: Colors.deepOrange[500],
+                                                color: Color(0xfff8141ff),
                                                 size: 24,
                                               ),
                                               Text(

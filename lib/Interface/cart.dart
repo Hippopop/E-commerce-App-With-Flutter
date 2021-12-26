@@ -210,7 +210,17 @@ child: Divider(
               flex:10,
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: width*0.0200, vertical: 8),
-                child: GradButton(text: "Place Order", onPress: (){}),
+                child: GradButton(text: "Place Order", onPress: (){
+                  setState(() {
+                    ordered.addAll(cart);
+                    cart.clear();
+                    total = 0;
+                  });
+                  final snackBar = SnackBar(
+                    content: const Text('Thank You! You Orders are placed.'),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }),
               )),
           ],
         ),

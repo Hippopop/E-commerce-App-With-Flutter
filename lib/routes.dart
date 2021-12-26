@@ -12,7 +12,7 @@ import 'Interface/productview.dart';
 
 final Map<String,WidgetBuilder> routes = {
 LogInPage.route:(context) => const LogInPage(),
-HomePage.route:(context) => const HomePage(),
+HomePage.route:(context) => HomePage(),
 CartPage.route: (context) => const CartPage(),
 ProductsPage.route: (context) => const ProductsPage(),
 RegistrationForm.route: (context) => const RegistrationForm(),

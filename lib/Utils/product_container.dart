@@ -1,10 +1,13 @@
 import 'package:ecommerce_app/Interface/productview.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Utils/bottom_navigation.dart';
+import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:flutter/material.dart';
 
 class ProductContainer extends StatefulWidget {
   ProductInfo product;
-  ProductContainer({Key? key, required this.product}) : super(key: key);
+  Pages current;
+  ProductContainer({Key? key, required this.product, required this.current}) : super(key: key);
 
 
   @override
@@ -30,7 +33,7 @@ class _ProductContainerState extends State<ProductContainer> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProductViewPage(product: widget.product)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProductViewPage(product: widget.product, current: widget.current,)));
                     },
                     child: Hero(
                       tag: widget.product.id,
@@ -66,11 +69,20 @@ class _ProductContainerState extends State<ProductContainer> {
                               favoriteProducts.remove(widget.product);
                             }) ;
                           }
+                          if(favoriteProducts.length == 0) {
+                            navState.setState(() {
+                              navState.favOn = false;
+                            });
+                          } else {
+                            navState.setState(() {
+                              navState.favOn = true;
+                            });
+                          }
                         },
                         child: (widget.product.isFav)
                             ? Icon(
                                 Icons.favorite,
-                                color: Colors.red,
+                                color: Colors.red[300],
                               )
                             : Icon(
                                 Icons.favorite_outline_rounded,
@@ -135,6 +147,15 @@ class _ProductContainerState extends State<ProductContainer> {
                                   widget.product.onCart = false;
                                   widget.product.cartCount = 0;
                                   cart.remove(widget.product);
+                                });
+                              }
+                              if(cart.length == 0) {
+                                navState.setState(() {
+                                  navState.cartOn = false;
+                                });
+                              } else {
+                                navState.setState(() {
+                                  navState.cartOn = true;
                                 });
                               }
                             },

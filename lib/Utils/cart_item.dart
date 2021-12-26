@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/Interface/cart.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Utils/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 
@@ -75,6 +76,11 @@ class _CartItemState extends State<CartItem> {
                                 cartState.setState(() {
                                   cartState.total = totalCost();
                                 });
+                                if(cart.isEmpty){
+                                  navState.setState(() {
+                                    navState.cartOn = false;
+                                  });
+                                }
                               } ,
                               child: Container(
                                 margin: EdgeInsets.symmetric(vertical: 3),

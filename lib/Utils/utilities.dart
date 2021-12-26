@@ -1,5 +1,4 @@
-import 'package:ecommerce_app/Interface/productview.dart';
-import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 LinearGradient baseGrad = LinearGradient(
@@ -240,3 +239,6 @@ fontSize: 20,
 
 focusColor: Colors.blue,
 );
+
+
+

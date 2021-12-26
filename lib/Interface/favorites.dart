@@ -77,6 +77,11 @@ class _FavoritesPageState extends State<FavoritesPage> {
                                 favoriteProducts[index].isFav = false;
                                 favoriteProducts.removeAt(index);
                               });
+                              navState.setState(() {
+                                if(favoriteProducts.isEmpty){
+                                  navState.favOn = false;
+                                }
+                              });
                             }
                             if(direction == DismissDirection.endToStart){
                               setState(() {
@@ -89,20 +94,34 @@ class _FavoritesPageState extends State<FavoritesPage> {
                               });
                             }
                           },
-                          background: Container(color: Colors.red,
+                          background: Container(
                           alignment: Alignment.centerLeft,
                           padding: EdgeInsets.only(left: 5),
-                          child: Icon(Icons.delete_forever_sharp,
-                            color: Colors.white,
-                            size: 32,
+                          child: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.red[300],
+                            ),
+                            child: Icon(Icons.delete_forever_sharp,
+                              color: Colors.white,
+                              size: 24,
+                            ),
                           ),
                           ),
-                          secondaryBackground:  Container(color: Colors.green,
+                          secondaryBackground:  Container(
                             alignment: Alignment.centerRight,
                             padding: EdgeInsets.only(right: 5),
-                            child: Icon(Icons.add_shopping_cart,
-                            size: 32,
-                              color: Colors.white,
+                            child: Container(
+                              padding: EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.green[300],
+                              ),
+                              child: Icon(Icons.shopping_cart,
+                              size: 24,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           key: ValueKey(product.id),

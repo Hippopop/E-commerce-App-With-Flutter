@@ -130,6 +130,8 @@ FocusNode pass = FocusNode();
                                   setState(() {
                                     active = userController.text;
                                     userController.clear();
+                                    user.unfocus();
+                                   // userController.dispose();
                                   });
                                 }
 
@@ -157,7 +159,7 @@ FocusNode pass = FocusNode();
                   children: [
                     Text(
                       (active == "blocked")
-                          ? "Create an account  "
+                          ? "Would you like to join??  "
                           : "Forgot Password??  ",
                       style: TextStyle(color: Colors.black54),
                     ),
