@@ -1,5 +1,5 @@
 
-import 'package:provider/provider.dart';
+import 'package:ecommerce_app/Utils/utilities.dart';
 
 class ProductInfo {
    int id;
@@ -19,17 +19,22 @@ bool onCart = false;
       required this.description,
       required this.images,
       required this.sizes});
-
-  int get getId => id;
+  List<Review> review = [
+    Review(time: "12.25 PM", date: "Dec 28, 2021", rating: 5, comment:  "This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN.", img:"https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"),
+    Review(time: "12.25 PM", date: "Dec 28, 2021", rating: 5, comment:  "This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN.", img:"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",),
+    Review(time: "12.25 PM", date: "Dec 28, 2021", rating: 5, comment:  "This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN.", img:"https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTN8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",),
+  ];
+ /* int get getId => id;
   String get getName => name;
   int get getPrice => price;
   String get getDesc => description;
   List<String> get getImgs => images;
-  List<String> get getSizes => sizes;
+  List<String> get getSizes => sizes;*/
 }
 
 List<ProductInfo> favoriteProducts = [];
-List<ProductInfo> cart = [];
+List<ProductInfo> cart = [
+];
 
 int totalCost() {
   int total = 0;
@@ -40,6 +45,27 @@ int totalCost() {
   return total;
 }
 List<ProductInfo> ordered = [];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 List<ProductInfo> productList = [
   ProductInfo(

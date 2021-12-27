@@ -4,21 +4,26 @@ import 'package:ecommerce_app/Interface/cart.dart';
 import 'package:ecommerce_app/Interface/homepage.dart';
 import 'package:ecommerce_app/Interface/productspage.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Utils/alert_dialogue_box.dart';
 import 'package:ecommerce_app/Utils/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/grad_button.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
+import 'package:ecommerce_app/Utils/review_section.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+late _ProductViewPageState productPageState;
 class ProductViewPage extends StatefulWidget {
   ProductInfo product;
   Pages current;
   ProductViewPage({Key? key, required this.product, required this.current}) : super(key: key);
 
   @override
-  _ProductViewPageState createState() => _ProductViewPageState();
+  _ProductViewPageState createState() {
+      productPageState = _ProductViewPageState();
+      return productPageState;
+  }
 }
 
 class _ProductViewPageState extends State<ProductViewPage> {
@@ -421,6 +426,60 @@ SliverToBoxAdapter(
     ),
   ),
 ),
+
+                    SliverToBoxAdapter(
+                      child: GestureDetector(
+                        onTap: () {
+
+Helper.showDialog(context, widget.product);
+
+                          /*showDialog(
+                            context: context,
+                            builder: (BuildContext dialogContext) {
+                              return MyAlertDialog(title: "helllow", content: 'Dialog content');
+                            }
+                          );
+*/
+
+                        },
+                        child: Container(
+                          height: 40,
+                          width: double.infinity,
+                          margin: EdgeInsets.symmetric(horizontal: width * 0.0450),
+                          decoration: BoxDecoration(
+                            //color: Colors.amber,
+                              borderRadius: BorderRadius.circular(12),
+                              border:  Border.all(
+                                color: bgColor,
+                                width: 1.8,
+                              )
+                          ),
+                          child: Row(
+                            children: [
+                              Spacer(
+                                flex: 3,
+                              ),
+                              Expanded(
+                                flex: 4,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(Icons.add,
+
+                                    ),
+                                    Text("Give a review.",style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500,),),
+                                  ],
+                                ),
+                              ),
+                              Spacer(
+                                flex: 3,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+
                     SliverToBoxAdapter(
                       child: Container(
                         height: 60,
@@ -447,331 +506,12 @@ SliverToBoxAdapter(
                         ),
                       ),
                     ),
+
+
                     SliverFixedExtentList(
                       itemExtent: 130,
-                      delegate: SliverChildListDelegate([
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        height: 150,
-                        width: double.infinity,
-                        margin: EdgeInsets.only(top: 8),
-                        padding: EdgeInsets.symmetric(horizontal: width * 0.0500, vertical: 8),
-                        //color: Colors.amber,
-                        child: Column(
-                          children: [
-                            Expanded(
-                                flex: 6,
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                        flex: 2,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(5.0),
-                                          child: CircleAvatar(
-                                      radius: 30,
-                                      backgroundImage: NetworkImage("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"),
-                                    ),
-                                        )),
-                                    Expanded(
-                                        flex: 8,
-                                        child: Container(
-                                          alignment: Alignment.centerLeft,
-                                          padding: EdgeInsets.symmetric(horizontal: 0),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Expanded(child: Align(
-                                                  alignment: Alignment.centerLeft,
-                                                  child: Text("Persons Name",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,),))),
-                                              Expanded(child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Text("2021/12/10     15:30",style: TextStyle(fontSize: 12),),
-                                                  Container(
-
-                                                    child: Row(
-                                                      children: [
-                                                        Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                        Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                        Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                        Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                        Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                        Text("  5.0",),
-                                                      ],
-                                                    ),
-                                                  )
-
-                                                ],
-                                              )),
-                                            ],
-                                          ),
-                                        ))
-                                  ],
-                                )),
-                            Expanded(
-                                flex: 4,
-                                child: Row(
-                                 children: [
-                                   Spacer(
-                                       flex: 2
-                                   ),
-                                   Expanded(
-                                       flex: 8,
-                                       child: Align(
-
-                                           alignment: Alignment.centerLeft,
-                                           child: Padding(
-                                             padding: const EdgeInsets.all(5.0),
-                                             child: Text("This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN."),
-                                           )))
-                                 ],
-
-                                )),
-                          ],
-                        ),
-                      ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          height: 150,
-                          width: double.infinity,
-                          margin: EdgeInsets.only(top: 8),
-                          padding: EdgeInsets.symmetric(horizontal: width * 0.0500, vertical: 8),
-                          //color: Colors.amber,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                  flex: 6,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          flex: 2,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(5.0),
-                                            child: CircleAvatar(
-                                              radius: 30,
-                                              backgroundImage: NetworkImage("https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"),
-                                            ),
-                                          )),
-                                      Expanded(
-                                          flex: 8,
-                                          child: Container(
-                                            alignment: Alignment.centerLeft,
-                                            padding: EdgeInsets.symmetric(horizontal: 0),
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Expanded(child: Align(
-                                                    alignment: Alignment.centerLeft,
-                                                    child: Text("Persons Name",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,),))),
-                                                Expanded(child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text("2021/12/10     15:30",style: TextStyle(fontSize: 12),),
-                                                    Container(
-
-                                                      child: Row(
-                                                        children: [
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Text("  5.0",),
-                                                        ],
-                                                      ),
-                                                    )
-
-                                                  ],
-                                                )),
-                                              ],
-                                            ),
-                                          ))
-                                    ],
-                                  )),
-                              Expanded(
-                                  flex: 4,
-                                  child: Row(
-                                    children: [
-                                      Spacer(
-                                          flex: 2
-                                      ),
-                                      Expanded(
-                                          flex: 8,
-                                          child: Align(
-
-                                              alignment: Alignment.centerLeft,
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(5.0),
-                                                child: Text("This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN."),
-                                              )))
-                                    ],
-
-                                  )),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          height: 150,
-                          width: double.infinity,
-                          margin: EdgeInsets.only(top: 8),
-                          padding: EdgeInsets.symmetric(horizontal: width * 0.0500, vertical: 8),
-                          //color: Colors.amber,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                  flex: 6,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          flex: 2,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(5.0),
-                                            child: CircleAvatar(
-                                              radius: 30,
-                                              backgroundImage: NetworkImage("https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"),
-                                            ),
-                                          )),
-                                      Expanded(
-                                          flex: 8,
-                                          child: Container(
-                                            alignment: Alignment.centerLeft,
-                                            padding: EdgeInsets.symmetric(horizontal: 0),
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Expanded(child: Align(
-                                                    alignment: Alignment.centerLeft,
-                                                    child: Text("Persons Name",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,),))),
-                                                Expanded(child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text("2021/12/10     15:30",style: TextStyle(fontSize: 12),),
-                                                    Container(
-
-                                                      child: Row(
-                                                        children: [
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Text("  5.0",),
-                                                        ],
-                                                      ),
-                                                    )
-
-                                                  ],
-                                                )),
-                                              ],
-                                            ),
-                                          ))
-                                    ],
-                                  )),
-                              Expanded(
-                                  flex: 4,
-                                  child: Row(
-                                    children: [
-                                      Spacer(
-                                          flex: 2
-                                      ),
-                                      Expanded(
-                                          flex: 8,
-                                          child: Align(
-
-                                              alignment: Alignment.centerLeft,
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(5.0),
-                                                child: Text("This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN."),
-                                              )))
-                                    ],
-
-                                  )),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          height: 150,
-                          width: double.infinity,
-                          margin: EdgeInsets.only(top: 8),
-                          padding: EdgeInsets.symmetric(horizontal: width * 0.0500, vertical: 8),
-                          //color: Colors.amber,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                  flex: 6,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          flex: 2,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(5.0),
-                                            child: CircleAvatar(
-                                              radius: 30,
-                                              backgroundImage: NetworkImage("https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTN8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"),
-                                            ),
-                                          )),
-                                      Expanded(
-                                          flex: 8,
-                                          child: Container(
-                                            alignment: Alignment.centerLeft,
-                                            padding: EdgeInsets.symmetric(horizontal: 0),
-                                            child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Expanded(child: Align(
-                                                    alignment: Alignment.centerLeft,
-                                                    child: Text("Persons Name",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,),))),
-                                                Expanded(child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Text("2021/12/10     15:30",style: TextStyle(fontSize: 12),),
-                                                    Container(
-
-                                                      child: Row(
-                                                        children: [
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
-                                                          Text("  5.0",),
-                                                        ],
-                                                      ),
-                                                    )
-
-                                                  ],
-                                                )),
-                                              ],
-                                            ),
-                                          ))
-                                    ],
-                                  )),
-                              Expanded(
-                                  flex: 4,
-                                  child: Row(
-                                    children: [
-                                      Spacer(
-                                          flex: 2
-                                      ),
-                                      Expanded(
-                                          flex: 8,
-                                          child: Align(
-
-                                              alignment: Alignment.centerLeft,
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(5.0),
-                                                child: Text("This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN."),
-                                              )))
-                                    ],
-
-                                  )),
-                            ],
-                          ),
-                        ),
-                    ]
-
+                      delegate: SliverChildListDelegate(
+                          List.from(product.review.reversed).map((e) => ReviewSection(review: e)).toList(),
                     ),),
                    /* SliverToBoxAdapter(
                       child: Container(
@@ -798,6 +538,7 @@ SliverToBoxAdapter(
                         ),
                       ),
                     )*/
+
                   ],
                 ),
               ),
@@ -855,3 +596,4 @@ SliverToBoxAdapter(
     );
   }
 }
+

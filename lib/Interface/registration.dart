@@ -251,7 +251,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                       onPress: () async{
                                         if (formKey.currentState!
                                             .validate()) {
-                                          User me = User(nameCont.text, mailCont.text, phoneCont.text, "", passCont.text);
+                                          User me = User(nameCont.text, mailCont.text, phoneCont.text, "https://assets.materialup.com/uploads/5b045613-638c-41d9-9b7c-5f6c82926c6e/preview.png", passCont.text);
                                           DataHandler.saveData(me);
                                           Navigator.pushReplacementNamed(context, HomePage.route);
                                           SplashScreen.currentUser = me;

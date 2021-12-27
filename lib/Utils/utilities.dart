@@ -1,3 +1,7 @@
+import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Utils/grad_button.dart';
+import 'package:ecommerce_app/Utils/review_getter.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +22,41 @@ Color bgColor = Color(0xffff0f4fe);
 TextStyle smallSub = TextStyle(
   fontSize: 18,
 );
+
+
+
+class Review {
+String date;
+String time;
+String comment;
+double rating;
+String img;
+
+Review({required this.time, required this.date, required this.rating, required this.comment, required this.img, });
+}
+
+
+class Helper{
+  static void showDialog(BuildContext context, ProductInfo product) {
+    showGeneralDialog(
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: 300),
+      context: context,
+      pageBuilder: (_, __, ___) {
+        return ReviewGetter(product: product,);
+      },
+      transitionBuilder: (_, anim, __, child) {
+        return SlideTransition(
+          position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim),
+          child: child,
+        );
+      },
+    );
+  }
+
+}
 
 /*
 
