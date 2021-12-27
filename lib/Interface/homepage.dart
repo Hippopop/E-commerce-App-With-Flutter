@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'cart.dart';
+
 class HomePage extends StatefulWidget {
   static final route = "/Interface/homepage";
   HomePage({Key? key}) : super(key: key);
@@ -229,7 +231,22 @@ class _HomePageState extends State<HomePage> {
                                                                     borderRadius:
                                                                         BorderRadius.circular(
                                                                             8))),
-                                                            onPressed: () {},
+                                                            onPressed: () {
+                                                              if(product.onCart) {
+                                                                Navigator.pushNamed(context, CartPage.route);
+                                                              } else {
+                                                                setState(() {
+                                                                  product.onCart = true;
+                                                                  product.cartCount = 1;
+                                                                  cart.add(product);
+                                                                });
+                                                                navState.setState(() {
+
+                                                                });
+                                                                Navigator.pushNamed(context, CartPage.route);
+                                                              }
+
+                                                            },
                                                             child: Container(
                                                               alignment:
                                                                   Alignment
@@ -249,7 +266,7 @@ class _HomePageState extends State<HomePage> {
                                                                   const EdgeInsets
                                                                       .all(3.0),
                                                               child: Text(
-                                                                  "Buy Now",
+                                                                  (product.onCart)?"On Cart":"Buy Now",
                                                                   style:
                                                                       TextStyle(
                                                                     color: Colors
@@ -480,7 +497,7 @@ class _HomePageState extends State<HomePage> {
                           itemBuilder: (context, index) {
                             productList[index].id = index;
                             return ProductContainer(
-                                product:  productList[index], current: current,);
+                                product:  List.from(productList.reversed)[index], current: current,);
                           },
                         ),
                       )),

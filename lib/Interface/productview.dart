@@ -39,8 +39,7 @@ if(widget.current == Pages.store) {
 } if(widget.current == Pages.cart) {
   Navigator.pushNamed(context, CartPage.route);
 }
-
-        return Future.value(false);
+return Future.value(false);
       },
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -48,255 +47,268 @@ if(widget.current == Pages.store) {
           child: Column(
             children: [
               Expanded(
-                flex: 4,
-                child: Column(
+                flex: 916,
+                child: CustomScrollView(
+                  slivers: [
+SliverToBoxAdapter(
+  child:  Container(
+    height: 785,
+    child: Column(
+      children: [
+        Expanded(
+          flex: 400,
+          child: Column(
+            children: [
+              Expanded(
+                flex: 8,
+                child: Stack(
+                  fit: StackFit.expand,
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.center,
                   children: [
-                    Expanded(
-                      flex: 8,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        clipBehavior: Clip.none,
-                        alignment: Alignment.center,
-                        children: [
-                          Positioned(
-                            top: 0,
-                            bottom: 20,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              height: height * 0.350,
-                              decoration: BoxDecoration(
-                                  gradient: baseGrad,
-                                  borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(25),
-                                    bottomRight: const Radius.circular(25),
-                                  )),
-                            ),
-                          ),
-                          Positioned(
-                              top: 20,
-                              child: SafeArea(
-                                child: Card(
-                                  color: const Color(0xffff5f5f5),
-                                  elevation: 3,
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: height * 0100),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: Container(
-                                    height: height * 0.300,
-                                    width: width * 0.900,
-                                    child: Column(
-                                      children: [
-                                        Expanded(
-                                            flex: 9,
-                                            child: Hero(
-                                              tag: product.id,
-                                              child: Container(
-                                                margin: const EdgeInsets.all(8),
-                                                decoration: BoxDecoration(
-                                                  color: Colors.black,
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                ),
-                                                width: double.infinity,
-                                                clipBehavior: Clip.hardEdge,
-                                                child: CarouselSlider(
-                                                  options: CarouselOptions(
-                                                    onPageChanged:
-                                                        (index, reason) {
-                                                      setState(() {
-                                                        serial = index;
-                                                      });
-                                                    },
-                                                    viewportFraction: 1,
-                                                    enlargeCenterPage: true,
-                                                  ),
-                                                  items: product.images
-                                                      .map(
-                                                        (image) => Container(
-                                                          width: double.infinity,
-                                                          child: Image.network(
-                                                            image,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                      )
-                                                      .toList(),
-                                                ),
-                                              ),
-                                            )),
-                                        Expanded(
-                                            flex: 1,
-                                            child: Container(
-                                              margin: const EdgeInsets.only(
-                                                left: 12,
-                                                right: 12,
-                                                bottom: 8,
-                                              ),
-                                              width: double.infinity,
-                                              //color: Colors.green,
-                                              child: Row(
-                                                children: [
-                                                  Expanded(
-                                                    flex: 4,
-                                                    child: Container(),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 8,
-                                                    child: Container(
-                                                      padding: EdgeInsets.all(5),
-                                                      alignment: Alignment.center,
-                                                      //color: Colors.amber,
-                                                      child:
-                                                          AnimatedSmoothIndicator(
-                                                        onDotClicked: (index) =>
-                                                            _controller
-                                                                .animateToPage(
-                                                                    index),
-                                                        activeIndex: serial,
-                                                        count:
-                                                            product.images.length,
-                                                        effect: JumpingDotEffect(
-                                                          spacing: 5,
-                                                          dotWidth: 8,
-                                                          dotHeight: 8,
-                                                          dotColor: Colors.grey,
-                                                          activeDotColor:
-                                                              Colors.black,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 4,
-                                                    child: Container(
-                                                      alignment:
-                                                          Alignment.centerRight,
-                                                      child: Text("${serial + 1}" +
-                                                          r"/" +
-                                                          "${product.images.length}"),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ))
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ))
-                        ],
+                    Positioned(
+                      top: 0,
+                      bottom: 20,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        height: height * 0.350,
+                        decoration: BoxDecoration(
+                            gradient: baseGrad,
+                            borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(25),
+                              bottomRight: const Radius.circular(25),
+                            )),
                       ),
                     ),
-                    Expanded(
-                      flex: 2,
-                      child: Container(),
-                    ),
+                    Positioned(
+                        top: 20,
+                        child: SafeArea(
+                          child: Card(
+                            color: const Color(0xffff5f5f5),
+                            elevation: 3,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: height * 0100),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25)),
+                            child: Container(
+                              height: height * 0.300,
+                              width: width * 0.900,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                      flex: 9,
+                                      child: Hero(
+                                        tag: product.id,
+                                        child: Container(
+                                          margin: const EdgeInsets.all(8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.black,
+                                            borderRadius:
+                                            BorderRadius.circular(12),
+                                          ),
+                                          width: double.infinity,
+                                          clipBehavior: Clip.hardEdge,
+                                          child: CarouselSlider(
+                                            options: CarouselOptions(
+                                              onPageChanged:
+                                                  (index, reason) {
+                                                setState(() {
+                                                  serial = index;
+                                                });
+                                              },
+                                              viewportFraction: 1,
+                                              enlargeCenterPage: true,
+                                            ),
+                                            items: product.images
+                                                .map(
+                                                  (image) => Container(
+                                                width: double.infinity,
+                                                child: Image.network(
+                                                  image,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            )
+                                                .toList(),
+                                          ),
+                                        ),
+                                      )),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        margin: const EdgeInsets.only(
+                                          left: 12,
+                                          right: 12,
+                                          bottom: 8,
+                                        ),
+                                        width: double.infinity,
+                                        //color: Colors.green,
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              flex: 4,
+                                              child: Container(),
+                                            ),
+                                            Expanded(
+                                              flex: 8,
+                                              child: Container(
+                                                padding: EdgeInsets.all(5),
+                                                alignment: Alignment.center,
+                                                //color: Colors.amber,
+                                                child:
+                                                AnimatedSmoothIndicator(
+                                                  onDotClicked: (index) =>
+                                                      _controller
+                                                          .animateToPage(
+                                                          index),
+                                                  activeIndex: serial,
+                                                  count:
+                                                  product.images.length,
+                                                  effect: JumpingDotEffect(
+                                                    spacing: 5,
+                                                    dotWidth: 8,
+                                                    dotHeight: 8,
+                                                    dotColor: Colors.grey,
+                                                    activeDotColor:
+                                                    Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 4,
+                                              child: Container(
+                                                alignment:
+                                                Alignment.centerRight,
+                                                child: Text("${serial + 1}" +
+                                                    r"/" +
+                                                    "${product.images.length}"),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ))
+                                ],
+                              ),
+                            ),
+                          ),
+                        ))
                   ],
                 ),
               ),
               Expanded(
-                flex: 1,
-                child: Container(
-                  margin: EdgeInsets.symmetric(
-                      horizontal: width * 0.0500, vertical: 8),
-                  //color: Colors.green,
-                  child: Column(
+                flex: 2,
+                child: Container(),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          flex: 100,
+          child: Container(
+            margin: EdgeInsets.symmetric(
+                horizontal: width * 0.0500, vertical: 8),
+            //color: Colors.green,
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 6,
+                  child: Row(
                     children: [
-                      Expanded(
-                        flex: 6,
-                        child: Row(
-                          children: [
-                            Text(
-                              r"$" + product.price.toString(),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 22),
-                            ),
-                            const Spacer(),
-                            GestureDetector(
-                              onTap: () {
-                                if(!widget.product.isFav){
-                                  setState(() {
-                                    widget.product.isFav = !widget.product.isFav;
-                                    favoriteProducts.add(widget.product);
-                                  }) ;
-                                } else {
-                                  setState(() {
-                                    widget.product.isFav = !widget.product.isFav;
-                                    favoriteProducts.remove(widget.product);
-                                  }) ;
-                                }
-                                if(favoriteProducts.length == 0) {
-                                  navState.setState(() {
-                                    navState.favOn = false;
-                                  });
-                                } else {
-                                  navState.setState(() {
-                                    navState.favOn = true;
-                                  });
-                                }
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.symmetric(horizontal: 8),
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xffff5f5f5),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: (product.isFav)
-                                    ? Icon(
-                                        Icons.favorite,
-                                        color: Colors.red,
-                                        size: 18,
-                                      )
-                                    : Icon(
-                                        Icons.favorite_border_outlined,
-                                        size: 18,
-                                      ),
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 8),
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: const Color(0xffff5f5f5),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: const Center(
-                                child: Icon(
-                                  Icons.share_outlined,
-                                  size: 18,
-                                ),
-                              ),
-                            ),
-                          ],
+                      Text(
+                        r"$" + product.price.toString(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 22),
+                      ),
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          if(!widget.product.isFav){
+                            setState(() {
+                              widget.product.isFav = !widget.product.isFav;
+                              favoriteProducts.add(widget.product);
+                            }) ;
+                          } else {
+                            setState(() {
+                              widget.product.isFav = !widget.product.isFav;
+                              favoriteProducts.remove(widget.product);
+                            }) ;
+                          }
+                          if(favoriteProducts.length == 0) {
+                            navState.setState(() {
+                              navState.favOn = false;
+                            });
+                          } else {
+                            navState.setState(() {
+                              navState.favOn = true;
+                            });
+                          }
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 8),
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: const Color(0xffff5f5f5),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: (product.isFav)
+                              ? Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                            size: 18,
+                          )
+                              : Icon(
+                            Icons.favorite_border_outlined,
+                            size: 18,
+                          ),
                         ),
                       ),
-                      Expanded(
-                        flex: 4,
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Text(
-                            product.name,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                color: Colors.black54),
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 8),
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: const Color(0xffff5f5f5),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Center(
+                          child: Icon(
+                            Icons.share_outlined,
+                            size: 18,
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
+                Expanded(
+                  flex: 4,
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      product.name,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.black54),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 516,
+          child: Column(
+            children: [
               Expanded(
-                flex: 6,
+                flex: 86,
                 child: Container(
                   //color: Colors.amber,
                   width: double.infinity,
                   padding: EdgeInsets.symmetric(horizontal: width * 0.0500),
-                  margin: const EdgeInsets.only(bottom: 8),
+                  // margin: const EdgeInsets.only(bottom: 8),
                   child: Column(
                     children: [
                       Expanded(
@@ -345,7 +357,7 @@ if(widget.current == Pages.store) {
                                     alignment: WrapAlignment.start,
                                     children: product.sizes
                                         .map((size) =>
-                                            sizeShowingBox(context, size))
+                                        sizeShowingBox(context, size))
                                         .toList(),
                                   ),
                                 ),
@@ -398,54 +410,444 @@ if(widget.current == Pages.store) {
                           ),
                         ),
                       ),
-                      Expanded(
-                        flex: 14,
-                        child: Container(
-                          child: (product.onCart)? GradButton(
-                            height: 80,
-                            width: double.infinity,
-                            text: "Buy Now",
-                            onPress: () {
-                              Navigator.pushNamed(context, CartPage.route);
-                            },
-                          ) : Row(
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  ),
+),
+                    SliverToBoxAdapter(
+                      child: Container(
+                        height: 60,
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.0500),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 55,
+                                child: Text("Reviews", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,),)),
+                            Expanded(
+                                flex: 30,
+                                child: Text("Average Rating",style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500,),)),
+                            Expanded(
+                                flex: 15,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(Icons.star, size: 18, color: Colors.amber,),
+                                    Text("4.8",),
+                                  ],
+                                )),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SliverFixedExtentList(
+                      itemExtent: 130,
+                      delegate: SliverChildListDelegate([
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        height: 150,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(top: 8),
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.0500, vertical: 8),
+                        //color: Colors.amber,
+                        child: Column(
+                          children: [
+                            Expanded(
+                                flex: 6,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: CircleAvatar(
+                                      radius: 30,
+                                      backgroundImage: NetworkImage("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"),
+                                    ),
+                                        )),
+                                    Expanded(
+                                        flex: 8,
+                                        child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          padding: EdgeInsets.symmetric(horizontal: 0),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(child: Align(
+                                                  alignment: Alignment.centerLeft,
+                                                  child: Text("Persons Name",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,),))),
+                                              Expanded(child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text("2021/12/10     15:30",style: TextStyle(fontSize: 12),),
+                                                  Container(
+
+                                                    child: Row(
+                                                      children: [
+                                                        Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                        Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                        Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                        Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                        Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                        Text("  5.0",),
+                                                      ],
+                                                    ),
+                                                  )
+
+                                                ],
+                                              )),
+                                            ],
+                                          ),
+                                        ))
+                                  ],
+                                )),
+                            Expanded(
+                                flex: 4,
+                                child: Row(
+                                 children: [
+                                   Spacer(
+                                       flex: 2
+                                   ),
+                                   Expanded(
+                                       flex: 8,
+                                       child: Align(
+
+                                           alignment: Alignment.centerLeft,
+                                           child: Padding(
+                                             padding: const EdgeInsets.all(5.0),
+                                             child: Text("This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN."),
+                                           )))
+                                 ],
+
+                                )),
+                          ],
+                        ),
+                      ),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          height: 150,
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 8),
+                          padding: EdgeInsets.symmetric(horizontal: width * 0.0500, vertical: 8),
+                          //color: Colors.amber,
+                          child: Column(
                             children: [
                               Expanded(
-                                flex: 15,
-                                child: GradButton(text:"Add To Cart", onPress: (){
-setState(() {
-  product.onCart = true;
-  product.cartCount = 1;
-  cart.add(product);
-});
-                                }, color: Colors.grey[400],)
-                              ),
-                              Spacer(
-                                flex: 1,
-                              ),
+                                  flex: 6,
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 2,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: CircleAvatar(
+                                              radius: 30,
+                                              backgroundImage: NetworkImage("https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"),
+                                            ),
+                                          )),
+                                      Expanded(
+                                          flex: 8,
+                                          child: Container(
+                                            alignment: Alignment.centerLeft,
+                                            padding: EdgeInsets.symmetric(horizontal: 0),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Expanded(child: Align(
+                                                    alignment: Alignment.centerLeft,
+                                                    child: Text("Persons Name",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,),))),
+                                                Expanded(child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text("2021/12/10     15:30",style: TextStyle(fontSize: 12),),
+                                                    Container(
+
+                                                      child: Row(
+                                                        children: [
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Text("  5.0",),
+                                                        ],
+                                                      ),
+                                                    )
+
+                                                  ],
+                                                )),
+                                              ],
+                                            ),
+                                          ))
+                                    ],
+                                  )),
                               Expanded(
-                                  flex: 15,
-                                  child: GradButton(
-                                    height: 80,
-                                    width: double.infinity,
-                                    text: "Buy Now",
-                                    onPress: () {
-                                      setState(() {
-                                        product.onCart = true;
-                                        product.cartCount = 1;
-                                        cart.add(product);
-                                      });
-                                      Navigator.pushNamed(context, CartPage.route);
-                                    },
+                                  flex: 4,
+                                  child: Row(
+                                    children: [
+                                      Spacer(
+                                          flex: 2
+                                      ),
+                                      Expanded(
+                                          flex: 8,
+                                          child: Align(
+
+                                              alignment: Alignment.centerLeft,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(5.0),
+                                                child: Text("This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN."),
+                                              )))
+                                    ],
+
                                   )),
                             ],
                           ),
                         ),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          height: 150,
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 8),
+                          padding: EdgeInsets.symmetric(horizontal: width * 0.0500, vertical: 8),
+                          //color: Colors.amber,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                  flex: 6,
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 2,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: CircleAvatar(
+                                              radius: 30,
+                                              backgroundImage: NetworkImage("https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"),
+                                            ),
+                                          )),
+                                      Expanded(
+                                          flex: 8,
+                                          child: Container(
+                                            alignment: Alignment.centerLeft,
+                                            padding: EdgeInsets.symmetric(horizontal: 0),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Expanded(child: Align(
+                                                    alignment: Alignment.centerLeft,
+                                                    child: Text("Persons Name",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,),))),
+                                                Expanded(child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text("2021/12/10     15:30",style: TextStyle(fontSize: 12),),
+                                                    Container(
+
+                                                      child: Row(
+                                                        children: [
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Text("  5.0",),
+                                                        ],
+                                                      ),
+                                                    )
+
+                                                  ],
+                                                )),
+                                              ],
+                                            ),
+                                          ))
+                                    ],
+                                  )),
+                              Expanded(
+                                  flex: 4,
+                                  child: Row(
+                                    children: [
+                                      Spacer(
+                                          flex: 2
+                                      ),
+                                      Expanded(
+                                          flex: 8,
+                                          child: Align(
+
+                                              alignment: Alignment.centerLeft,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(5.0),
+                                                child: Text("This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN."),
+                                              )))
+                                    ],
+
+                                  )),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          height: 150,
+                          width: double.infinity,
+                          margin: EdgeInsets.only(top: 8),
+                          padding: EdgeInsets.symmetric(horizontal: width * 0.0500, vertical: 8),
+                          //color: Colors.amber,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                  flex: 6,
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 2,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: CircleAvatar(
+                                              radius: 30,
+                                              backgroundImage: NetworkImage("https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTN8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"),
+                                            ),
+                                          )),
+                                      Expanded(
+                                          flex: 8,
+                                          child: Container(
+                                            alignment: Alignment.centerLeft,
+                                            padding: EdgeInsets.symmetric(horizontal: 0),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Expanded(child: Align(
+                                                    alignment: Alignment.centerLeft,
+                                                    child: Text("Persons Name",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,),))),
+                                                Expanded(child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Text("2021/12/10     15:30",style: TextStyle(fontSize: 12),),
+                                                    Container(
+
+                                                      child: Row(
+                                                        children: [
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Icon(Icons.star, size: 18, color: Colors.amber,),
+                                                          Text("  5.0",),
+                                                        ],
+                                                      ),
+                                                    )
+
+                                                  ],
+                                                )),
+                                              ],
+                                            ),
+                                          ))
+                                    ],
+                                  )),
+                              Expanded(
+                                  flex: 4,
+                                  child: Row(
+                                    children: [
+                                      Spacer(
+                                          flex: 2
+                                      ),
+                                      Expanded(
+                                          flex: 8,
+                                          child: Align(
+
+                                              alignment: Alignment.centerLeft,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(5.0),
+                                                child: Text("This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN."),
+                                              )))
+                                    ],
+
+                                  )),
+                            ],
+                          ),
+                        ),
+                    ]
+
+                    ),),
+                   /* SliverToBoxAdapter(
+                      child: Container(
+                        height: 120,
+                        width: double.infinity,
+                        padding: EdgeInsets.symmetric(horizontal: width * 0.0500),
+                        color: Colors.amber,
+                        child: Column(
+                          children: [
+                            Expanded(
+                                flex: 6,
+                                child: Row(
+                                  children: [
+                                    Expanded(child: CircleAvatar(
+                                      radius: 30,
+                                      backgroundImage: NetworkImage(""),
+                                    ))
+                                  ],
+                                )),
+                            Expanded(
+                                flex: 4,
+                                child: Row()),
+                          ],
+                        ),
                       ),
+                    )*/
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 84,
+                child: Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.0400),
+                  margin: EdgeInsets.only(bottom: 7),
+                  child: (product.onCart)? GradButton(
+                    height: 80,
+                    width: double.infinity,
+                    text: "Buy Now",
+                    onPress: () {
+                      Navigator.pushNamed(context, CartPage.route);
+                    },
+                  ) : Row(
+                    children: [
+                      Expanded(
+                          flex: 15,
+                          child: GradButton(text:"Add To Cart", onPress: (){
+                            setState(() {
+                              product.onCart = true;
+                              product.cartCount = 1;
+                              cart.add(product);
+                            });
+                          }, color: Colors.grey[400],)
+                      ),
+                      Spacer(
+                        flex: 1,
+                      ),
+                      Expanded(
+                          flex: 15,
+                          child: GradButton(
+                            height: 80,
+                            width: double.infinity,
+                            text: "Buy Now",
+                            onPress: () {
+                              setState(() {
+                                product.onCart = true;
+                                product.cartCount = 1;
+                                cart.add(product);
+                              });
+                              Navigator.pushNamed(context, CartPage.route);
+                            },
+                          )),
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

@@ -84,7 +84,7 @@ Pages current = Pages.store;
                     floating: true,
                     backgroundColor: Colors.transparent,
                     automaticallyImplyLeading: false,
-                    expandedHeight: 120,
+                    expandedHeight: 125,
                     flexibleSpace: FlexibleSpaceBar(
                       collapseMode: CollapseMode.pin,
 
@@ -101,7 +101,7 @@ Pages current = Pages.store;
                         child: SafeArea(
                           child: Center(child: Column(
                             children: [
-                              SizedBox(height: 50,),
+                              SizedBox(height: 65,),
                               TextField(
                                 style: TextStyle(
                                   fontSize: 14,

@@ -45,6 +45,16 @@ class _cBottomNavigationBarState extends State<cBottomNavigationBar> {
   }
   @override
   Widget build(BuildContext context) {
+    if (favoriteProducts.length > 0) {
+      favOn = true;
+    } else {
+      favOn = false;
+    }
+    if (cart.length > 0) {
+      cartOn = true;
+    } else {
+      cartOn = false;
+    }
     return Container(
       height: 73.55,
       padding: EdgeInsets.symmetric(

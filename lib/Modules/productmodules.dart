@@ -43,9 +43,9 @@ List<ProductInfo> ordered = [];
 
 List<ProductInfo> productList = [
   ProductInfo(
-    id: 6,
+    id: 8,
       name: "Mockup Shoes ",
-      price: 150,
+      price: 550,
       description:
       "It's just a mockup product. But you can add as you wish. Just add to a product to the product list. And it will instantly add as a new product. Have fun.",
       images: [
@@ -65,9 +65,9 @@ List<ProductInfo> productList = [
         "11",
       ]),
   ProductInfo(
-    id: 3,
+    id: 30,
       name: "Mockup Bag",
-      price: 150,
+      price: 300,
       description:
       "You can add at least 10 different size as option. And as many images as you want as different color choices. It can handle it easily.",
       images: [
@@ -113,7 +113,7 @@ List<ProductInfo> productList = [
   ProductInfo(
       id: 1,
       name: "Mockup Shoes ",
-      price: 150,
+      price: 200,
       description:
       "It's just a mockup product. But you can add as you wish. Just add to a product to the product list. And it will instantly add as a new product. Have fun.",
       images: [
@@ -136,7 +136,7 @@ List<ProductInfo> productList = [
   ProductInfo(
       id: 2,
       name: "Mockup Dress",
-      price: 150,
+      price: 100,
       description:
       "You can add at least 10 different size as option. And as many images as you want as different color choices. It can handle it easily.",
       images: [
@@ -156,4 +156,117 @@ List<ProductInfo> productList = [
         "XXL",
         "XXL",
       ]),
+  ProductInfo(
+      id: 11,
+      name: "Mockup Shoes ",
+      price: 250,
+      description:
+      "It's just a mockup product. But you can add as you wish. Just add to a product to the product list. And it will instantly add as a new product. Have fun.",
+      images: [
+        "https://images.unsplash.com/photo-1491553895911-0055eca6402d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZHVjdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+      ],
+      sizes: [
+        "7",
+        "7.5",
+        "8",
+        "8.5",
+        "9",
+        "9.5",
+        "10",
+        "10.5",
+        "11",
+      ]),
+  ProductInfo(
+      id: 9,
+      name: "Mockup Shoes ",
+      price: 550,
+      description:
+      "It's just a mockup product. But you can add as you wish. Just add to a product to the product list. And it will instantly add as a new product. Have fun.",
+      images: [
+        "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+      ],
+      sizes: [
+        "7",
+        "7.5",
+        "8",
+        "8.5",
+        "9",
+        "9.5",
+        "10",
+        "10.5",
+        "11",
+      ]),
+  ProductInfo(
+      id: 32,
+      name: "Mockup Shoes ",
+      price: 500,
+      description:
+      "It's just a mockup product. But you can add as you wish. Just add to a product to the product list. And it will instantly add as a new product. Have fun.",
+      images: [
+        "https://images.unsplash.com/photo-1545289414-1c3cb1c06238?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fHByb2R1Y3R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+      ],
+      sizes: [
+        "7",
+        "7.5",
+        "8",
+        "8.5",
+        "9",
+        "9.5",
+        "10",
+        "10.5",
+        "11",
+      ]),
+  ProductInfo(
+      id: 52,
+      name: "Mockup Shoes ",
+      price: 300,
+      description:
+      "It's just a mockup product. But you can add as you wish. Just add to a product to the product list. And it will instantly add as a new product. Have fun.",
+      images: [
+        "https://images.unsplash.com/photo-1584735175315-9d5df23860e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Njl8fHByb2R1Y3R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+      ],
+      sizes: [
+        "7",
+        "7.5",
+        "8",
+        "8.5",
+        "9",
+        "9.5",
+        "10",
+        "10.5",
+        "11",
+      ]),
+  ProductInfo(
+      id: 51,
+      name: "Mockup Shoes ",
+      price: 380,
+      description:
+      "It's just a mockup product. But you can add as you wish. Just add to a product to the product list. And it will instantly add as a new product. Have fun.",
+      images: [
+        "https://images.unsplash.com/photo-1539185441755-769473a23570?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTEzfHxwcm9kdWN0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+      ],
+      sizes: [
+        "7",
+        "7.5",
+        "8",
+        "8.5",
+        "9",
+        "9.5",
+        "10",
+        "10.5",
+        "11",
+      ]),
+
+
+
 ];

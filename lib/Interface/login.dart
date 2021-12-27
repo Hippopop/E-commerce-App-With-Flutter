@@ -131,6 +131,9 @@ FocusNode pass = FocusNode();
                           height: (height * 0.075),
                           child: (active == "blocked")
                               ? GradButton(text: "Go", onPress: (){
+                             /*   setState(() {
+                                  active = userController.text;
+                                });*/
     if(userController.text == "") {
     user.requestFocus();
     } if(userController.text == SplashScreen.currentUser.name){
