@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/Interface/productview.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Utils/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/grad_button.dart';
@@ -177,7 +178,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                                                 children: [
                                                   Expanded(
                                                     flex: 48,
-                                                    child: GradButton(text: "Details", onPress: (){}, fontSize: 15, color: Colors.grey,),),
+                                                    child: GradButton(text: "Details", onPress: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> ProductViewPage(product: product, current: current))); }, fontSize: 15, color: Colors.grey,),),
                                                   Spacer(
                                                     flex: 2,
                                                   ),

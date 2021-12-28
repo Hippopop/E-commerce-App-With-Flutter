@@ -98,11 +98,11 @@ String date = DateFormat.yMMMd().format(DateTime.now()).toString();
                               ),
                               SliderTheme(
                                 data: SliderThemeData(
-                                  activeTrackColor: Colors.purple[400],
-                                  inactiveTrackColor: Colors.grey[300],
+                                  activeTrackColor: Colors.blue.shade300,
+                                  inactiveTrackColor: Colors.grey[400],
                                   thumbColor: bgColor,
                                   overlayColor: Colors.grey.shade400,
-                                  valueIndicatorColor: Colors.orange[400],
+                                  valueIndicatorColor: bgColor,
                                   inactiveTickMarkColor: Colors.grey,
                                   trackHeight: 8,
                                   activeTickMarkColor: Colors.transparent,
@@ -132,7 +132,7 @@ String date = DateFormat.yMMMd().format(DateTime.now()).toString();
                             children: [
                               Expanded(
                                   flex:1,
-                                  child: Text("Write Your Opinion Here :", style: TextStyle(fontSize: 18, /*fontWeight: FontWeight.w500,*/ color: Colors.black),)),
+                                  child: Text("Write Your Review Here :", style: TextStyle(fontSize: 18, /*fontWeight: FontWeight.w500,*/ color: Colors.black),)),
                               Expanded(
                                   flex: 8,
                                   child: Padding(
@@ -149,11 +149,13 @@ String date = DateFormat.yMMMd().format(DateTime.now()).toString();
                                         filled: true,
                                         fillColor: bgColor,
                                         border: OutlineInputBorder(
+                                          gapPadding: 8,
                                           borderRadius: BorderRadius.circular(12),
-                                          borderSide: BorderSide(
-                                            width: 3,
-                                            style: BorderStyle.solid,
-                                          ),
+                                          /*borderSide: BorderSide(
+                                            width: 4.8,
+                                            color: Colors.grey,
+
+                                          ),*/
                                         )
 
                                       ),
@@ -168,19 +170,56 @@ String date = DateFormat.yMMMd().format(DateTime.now()).toString();
                 ),),
               Expanded(
                 flex: 10,
-                child: Container(
-                  child: GradButton(text: "Submit", onPress: (){
-                    Review store = Review(time: time, date: date, rating: sliderValue, comment: reviewCont.text, img: "nai");
-                    widget.product.review.add(store);
-                    productPageState.setState(() {
-                    });
-/*
-print(time);
-print(DateFormat.yMMMd().format(DateTime.now()));
-*/
+                child: Hero(
+                  tag: "reviewButtton",
+                  child: Container(
+                    height: 40,
+                    width: double.infinity,
+                   // margin: EdgeInsets.symmetric(horizontal: width * 0.0450),
+                    decoration: BoxDecoration(
+                      //color: Colors.grey[400],
+                        borderRadius: BorderRadius.circular(12),
+                        border:  Border.all(
+                          color: Colors.black54,
+                          width: 1.8,
+                        )
+                    ),
+                    child: Row(
+                      children: [
+                        Spacer(
+                          flex: 4,
+                        ),
+                        Expanded(
+                          flex: 4,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Icon(Icons.add,
 
-                    Navigator.pop(context);
-                  }, color: Color(0xfff8141ff),),
+                              ),
+                              Text("Post review.",style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500,),),
+                            ],
+                          ),
+                        ),
+                        Spacer(
+                          flex: 4,
+                        ),
+                      ],
+                    )
+
+                    /* GradButton(text: "Submit", onPress: (){
+                      Review store = Review(time: time, date: date, rating: sliderValue, comment: reviewCont.text, img: "nai");
+                      widget.product.review.add(store);
+                      productPageState.setState(() {
+                      });
+                      final snackBar = SnackBar(
+                        duration: Duration(milliseconds: 50000),
+                        content: const Text('Your review has been updated.'),
+                      );
+
+                      Navigator.pop(context);
+                    }, color: Color(0xfff8141ff),)*/,
+                  ),
                 ),),
             ],
           ),

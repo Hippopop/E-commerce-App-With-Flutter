@@ -20,29 +20,21 @@ class _RegistrationFormState extends State<RegistrationForm> {
   final phoneCont = TextEditingController();
   final passCont = TextEditingController();
 
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     nameCont.addListener(() {
-      setState(() {
-      });
+      setState(() {});
     });
     mailCont.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
     phoneCont.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
     passCont.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
   }
 
@@ -57,9 +49,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
         child: Container(
           padding: EdgeInsets.symmetric(
               vertical: (height * 0.0200), horizontal: (width * 0.020)),
-          decoration: const BoxDecoration(
-
-              ),
+          decoration: const BoxDecoration(),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -120,26 +110,25 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                                 if (name!.isEmpty ||
                                                     name == null) {
                                                   return "Please enter a valid name.";
-                                                } if(name.length<4) {
+                                                }
+                                                if (name.length < 4) {
                                                   return "Name is too short!";
-                                                } if(name.contains(" ")) {
-                                                    return "Can't have a space in name";
+                                                }
+                                                if (name.contains(" ")) {
+                                                  return "Can't have a space in name";
                                                 }
                                               },
                                               // controller: mailController,
                                               decoration: InputDecoration(
-                                                labelText: "User",
-                                                prefixIcon: Icon(Icons
-                                                    .account_circle_outlined),
-                                                suffixIcon: Icon(Icons.cancel)
-
-                                              ),
+                                                  labelText: "User name",
+                                                  prefixIcon: Icon(Icons.face),
+                                                  suffixIcon:
+                                                      Icon(Icons.cancel)),
                                               keyboardType:
                                                   TextInputType.emailAddress,
                                               textInputAction:
                                                   TextInputAction.next,
                                             ),
-
                                             TextFormField(
                                               controller: mailCont,
                                               validator: (name) {
@@ -150,9 +139,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               },
                                               // controller: mailController,
                                               decoration: InputDecoration(
-                                                labelText: "Email",
-                                                prefixIcon:
-                                                    Icon(Icons.email_outlined),
+                                                labelText: "Full Name",
+                                                prefixIcon: Icon(Icons
+                                                    .account_circle_outlined),
                                                 suffixIcon: IconButton(
                                                   icon: Icon(Icons.cancel),
                                                   onPressed: () {
@@ -165,7 +154,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               textInputAction:
                                                   TextInputAction.next,
                                             ),
-
                                             TextFormField(
                                               controller: phoneCont,
                                               validator: (name) {
@@ -191,7 +179,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               textInputAction:
                                                   TextInputAction.next,
                                             ),
-
                                             TextFormField(
                                               controller: passCont,
                                               validator: (name) {
@@ -248,12 +235,17 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                   flex: 1,
                                   child: GradButton(
                                       text: "Submit",
-                                      onPress: () async{
-                                        if (formKey.currentState!
-                                            .validate()) {
-                                          User me = User(nameCont.text, mailCont.text, phoneCont.text, "https://assets.materialup.com/uploads/5b045613-638c-41d9-9b7c-5f6c82926c6e/preview.png", passCont.text);
+                                      onPress: () async {
+                                        if (formKey.currentState!.validate()) {
+                                          User me = User(
+                                              nameCont.text,
+                                              mailCont.text,
+                                              phoneCont.text,
+                                              "https://images.unsplash.com/photo-1539125530496-3ca408f9c2d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODl8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+                                              passCont.text);
                                           DataHandler.saveData(me);
-                                          Navigator.pushReplacementNamed(context, HomePage.route);
+                                          Navigator.pushReplacementNamed(
+                                              context, HomePage.route);
                                           SplashScreen.currentUser = me;
                                         }
                                       }),

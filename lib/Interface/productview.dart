@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:ecommerce_app/Interface/cart.dart';
+import 'package:ecommerce_app/Interface/favorites.dart';
 import 'package:ecommerce_app/Interface/homepage.dart';
 import 'package:ecommerce_app/Interface/productspage.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
@@ -43,6 +44,8 @@ if(widget.current == Pages.store) {
   Navigator.pushNamed(context, HomePage.route);
 } if(widget.current == Pages.cart) {
   Navigator.pushNamed(context, CartPage.route);
+} if(widget.current == Pages.favorites) {
+  Navigator.pushNamed(context, FavoritesPage.route);
 }
 return Future.value(false);
       },
@@ -442,39 +445,42 @@ Helper.showDialog(context, widget.product);
 */
 
                         },
-                        child: Container(
-                          height: 40,
-                          width: double.infinity,
-                          margin: EdgeInsets.symmetric(horizontal: width * 0.0450),
-                          decoration: BoxDecoration(
-                            //color: Colors.amber,
-                              borderRadius: BorderRadius.circular(12),
-                              border:  Border.all(
-                                color: bgColor,
-                                width: 1.8,
-                              )
-                          ),
-                          child: Row(
-                            children: [
-                              Spacer(
-                                flex: 3,
-                              ),
-                              Expanded(
-                                flex: 4,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Icon(Icons.add,
-
-                                    ),
-                                    Text("Give a review.",style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500,),),
-                                  ],
+                        child: Hero(
+                          tag:  "reviewButtton",
+                          child: Container(
+                            height: 40,
+                            width: double.infinity,
+                            margin: EdgeInsets.symmetric(horizontal: width * 0.0450),
+                            decoration: BoxDecoration(
+                              //color: Colors.amber,
+                                borderRadius: BorderRadius.circular(12),
+                                border:  Border.all(
+                                  color: bgColor,
+                                  width: 1.8,
+                                )
+                            ),
+                            child: Row(
+                              children: [
+                                Spacer(
+                                  flex: 3,
                                 ),
-                              ),
-                              Spacer(
-                                flex: 3,
-                              ),
-                            ],
+                                Expanded(
+                                  flex: 4,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Icon(Icons.add,
+
+                                      ),
+                                      Text("Give a review.",style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500,),),
+                                    ],
+                                  ),
+                                ),
+                                Spacer(
+                                  flex: 3,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

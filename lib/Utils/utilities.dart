@@ -234,6 +234,8 @@ Container sizeShowingBox(BuildContext context, String size) {
     height: 44,
     width: 55,
     decoration: BoxDecoration(
+      color: bgColor,
+
       border: Border.all(
         width: 0.8,
         color: Colors.black,

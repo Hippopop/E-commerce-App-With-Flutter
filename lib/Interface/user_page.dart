@@ -73,7 +73,7 @@ class _UserPageState extends State<UserPage> {
                                         child: CircleAvatar(
                                           radius: 40,
                                           backgroundImage: NetworkImage(
-                                            "https://assets.materialup.com/uploads/5b045613-638c-41d9-9b7c-5f6c82926c6e/preview.png",
+                                            SplashScreen.currentUser.img,
                                           ),
                                         ),
                                       ),
@@ -140,7 +140,7 @@ class _UserPageState extends State<UserPage> {
                                           flex: 3,
                                           child: Container(
                                             child: Text(
-                                              "Mostafijul Islam",
+                                              SplashScreen.currentUser.email,
                                               style: TextStyle(
                                                 letterSpacing: 1,
                                                 fontSize: 24,
@@ -283,7 +283,7 @@ class _UserPageState extends State<UserPage> {
                                                 Text(
                                                   "Total Fav.",
                                                   style:
-                                                      TextStyle(fontSize: 14),
+                                                      TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -317,7 +317,7 @@ class _UserPageState extends State<UserPage> {
                                                 Text(
                                                   "On Cart",
                                                   style: TextStyle(
-                                                    fontSize: 14,
+                                                    fontSize: 16,
                                                   ),
                                                 )
                                               ],
@@ -351,7 +351,7 @@ class _UserPageState extends State<UserPage> {
                                                 ),*/
                                                 Text("Orders",
                                                     style: TextStyle(
-                                                      fontSize: 14,
+                                                      fontSize: 16,
                                                     ))
                                               ],
                                             ),
@@ -385,7 +385,7 @@ class _UserPageState extends State<UserPage> {
                                                 Text(
                                                   "Delivered",
                                                   style:
-                                                      TextStyle(fontSize: 14),
+                                                      TextStyle(fontSize: 16),
                                                 )
                                               ],
                                             ),
@@ -421,12 +421,12 @@ class _UserPageState extends State<UserPage> {
                                             children: [
                                               Icon(
                                                 Icons.category_outlined,
-                                                color: Color(0xffb225d0),                                                size: 24,
+                                                color: Colors.deepOrange[500],                                                size: 24,
                                               ),
                                               Text(
                                                 "Category",
                                                 style:
-                                                TextStyle(fontSize: 14),
+                                                TextStyle(fontSize: 16),
                                               )
                                             ],
                                           ),
@@ -453,7 +453,7 @@ class _UserPageState extends State<UserPage> {
                                               Text(
                                                 "Reviews",
                                                 style: TextStyle(
-                                                  fontSize: 14,
+                                                  fontSize: 16,
                                                 ),
                                               )
                                             ],
@@ -476,12 +476,12 @@ class _UserPageState extends State<UserPage> {
                                             children: [
                                               Icon(
                                                 Icons.history_rounded,
-                                                color: Colors.deepOrange[500],
+                                                color: Color(0xffb225d0),
                                                 size: 24,
                                               ),
                                               Text("History",
                                                   style: TextStyle(
-                                                    fontSize: 14,
+                                                    fontSize: 16,
                                                   ))
                                             ],
                                           ),
@@ -507,7 +507,7 @@ class _UserPageState extends State<UserPage> {
                                               Text(
                                                 "Adress",
                                                 style:
-                                                TextStyle(fontSize: 14),
+                                                TextStyle(fontSize: 16),
                                               )
                                             ],
                                           ),
@@ -542,13 +542,13 @@ class _UserPageState extends State<UserPage> {
                                             children: [
                                               Icon(
                                                 Icons.payment_rounded,
-                                                color: Colors.deepOrange[500],
+                                                color: Color(0xfffa25eff),
                                                 size: 24,
                                               ),
                                               Text(
                                                 "Payment",
                                                 style:
-                                                TextStyle(fontSize: 14),
+                                                TextStyle(fontSize: 16),
                                               )
                                             ],
                                           ),
@@ -576,7 +576,7 @@ class _UserPageState extends State<UserPage> {
                                               Text(
                                                 "Helpline",
                                                 style: TextStyle(
-                                                  fontSize: 14,
+                                                  fontSize: 16,
                                                 ),
                                               )
                                             ],
@@ -604,7 +604,7 @@ class _UserPageState extends State<UserPage> {
                                               ),
                                               Text("Report",
                                                   style: TextStyle(
-                                                    fontSize: 14,
+                                                    fontSize: 16,
                                                   ))
                                             ],
                                           ),
@@ -625,12 +625,12 @@ class _UserPageState extends State<UserPage> {
                                             children: [
                                               Icon(
                                                 Icons.description_outlined,
-                                                color: Color(0xfffa25eff),                                                size: 24,
+                                                color: Colors.deepOrange[500],                                                size: 24,
                                               ),
                                               Text(
-                                                "About App",
+                                                "About",
                                                 style:
-                                                TextStyle(fontSize: 14),
+                                                TextStyle(fontSize: 16),
                                               )
                                             ],
                                           ),

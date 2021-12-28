@@ -1,18 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-/*
-
-class UserStorage{
-  User currentUser;
-
-  UserStorage({required this.currentUser});
-
-  User get getUser => currentUser;
-}
-*/
-
-
-
 
 
 class User {
@@ -55,7 +42,6 @@ class DataHandler {
   }
   static saveData(User user) {
     String json = jsonEncode(user.toJson());
-    print(json);
     prefs.setString("userTojson", json);
   }
 

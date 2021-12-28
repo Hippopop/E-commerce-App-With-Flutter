@@ -1,4 +1,5 @@
 
+import 'package:ecommerce_app/Interface/productspage.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Utils/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
@@ -150,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                                     viewportFraction: 1,
                                     autoPlay: true,
                                   ),
-                                  items: productList
+                                  items: List.from(productList.sublist(1, 5))
                                       .map(
                                         (product) => Row(
                                           children: [
@@ -298,7 +299,7 @@ class _HomePageState extends State<HomePage> {
                                       onDotClicked: (index) =>
                                           _controller.animateToPage(index),
                                       activeIndex: serial,
-                                      count: productList.length,
+                                      count: 5,
                                       effect: JumpingDotEffect(
                                         spacing: 5,
                                         dotWidth: 8,
@@ -459,7 +460,9 @@ class _HomePageState extends State<HomePage> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8)),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushReplacementNamed(context, ProductsPage.route);
+                                },
                                 child: Container(
                                     padding: EdgeInsets.all(10),
                                     decoration: BoxDecoration(

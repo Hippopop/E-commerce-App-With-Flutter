@@ -2,6 +2,7 @@
 import 'package:ecommerce_app/Interface/homepage.dart';
 import 'package:ecommerce_app/Interface/login.dart';
 import 'package:ecommerce_app/Interface/registration.dart';
+import 'package:ecommerce_app/Interface/user_page.dart';
 import 'package:ecommerce_app/Utils/User_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       } else {
         //currentUser = user;
-        Navigator.pushReplacementNamed(context, LogInPage.route);
+        Navigator.pushReplacementNamed(context, HomePage.route);
       }
     });
 
