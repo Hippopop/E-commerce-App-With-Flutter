@@ -3,7 +3,6 @@ import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'grad_button.dart';
 
 
 class ReviewGetter extends StatefulWidget {
@@ -170,55 +169,69 @@ String date = DateFormat.yMMMd().format(DateTime.now()).toString();
                 ),),
               Expanded(
                 flex: 10,
-                child: Hero(
-                  tag: "reviewButtton",
-                  child: Container(
-                    height: 40,
-                    width: double.infinity,
-                   // margin: EdgeInsets.symmetric(horizontal: width * 0.0450),
-                    decoration: BoxDecoration(
-                      //color: Colors.grey[400],
-                        borderRadius: BorderRadius.circular(12),
-                        border:  Border.all(
-                          color: Colors.black54,
-                          width: 1.8,
-                        )
-                    ),
-                    child: Row(
-                      children: [
-                        Spacer(
-                          flex: 4,
-                        ),
-                        Expanded(
-                          flex: 4,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Icon(Icons.add,
+                child: GestureDetector(
+                  onTap: (){
+                    Review store = Review(time: time, date: date, rating: sliderValue, comment: reviewCont.text, img: "nai");
+                    widget.product.review.add(store);
+                    productPageState.setState(() {
+                    });
+                    SnackBar(
+                      duration: Duration(milliseconds: 50000),
+                      content: const Text('Your review has been updated.'),
+                    );
 
-                              ),
-                              Text("Post review.",style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500,),),
-                            ],
+                    Navigator.pop(context);
+                  },
+                  child: Hero(
+                    tag: "reviewButtton",
+                    child: Container(
+                      height: 40,
+                      width: double.infinity,
+                     // margin: EdgeInsets.symmetric(horizontal: width * 0.0450),
+                      decoration: BoxDecoration(
+                        //color: Colors.grey[400],
+                          borderRadius: BorderRadius.circular(12),
+                          border:  Border.all(
+                            color: Colors.black54,
+                            width: 1.8,
+                          )
+                      ),
+                      child: Row(
+                        children: [
+                          Spacer(
+                            flex: 4,
                           ),
-                        ),
-                        Spacer(
-                          flex: 4,
-                        ),
-                      ],
-                    )
+                          Expanded(
+                            flex: 4,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Icon(Icons.add,
 
-                    /* GradButton(text: "Submit", onPress: (){
-                      Review store = Review(time: time, date: date, rating: sliderValue, comment: reviewCont.text, img: "nai");
-                      widget.product.review.add(store);
-                      productPageState.setState(() {
-                      });
-                      final snackBar = SnackBar(
-                        duration: Duration(milliseconds: 50000),
-                        content: const Text('Your review has been updated.'),
-                      );
+                                ),
+                                Text("Post review.",style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500,),),
+                              ],
+                            ),
+                          ),
+                          Spacer(
+                            flex: 4,
+                          ),
+                        ],
+                      )
 
-                      Navigator.pop(context);
-                    }, color: Color(0xfff8141ff),)*/,
+                      /* GradButton(text: "Submit", onPress: (){
+                        Review store = Review(time: time, date: date, rating: sliderValue, comment: reviewCont.text, img: "nai");
+                        widget.product.review.add(store);
+                        productPageState.setState(() {
+                        });
+                        final snackBar = SnackBar(
+                          duration: Duration(milliseconds: 50000),
+                          content: const Text('Your review has been updated.'),
+                        );
+
+                        Navigator.pop(context);
+                      }, color: Color(0xfff8141ff),)*/,
+                    ),
                   ),
                 ),),
             ],

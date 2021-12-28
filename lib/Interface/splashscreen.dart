@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       } else {
         //currentUser = user;
-        Navigator.pushReplacementNamed(context, HomePage.route);
+        Navigator.pushReplacementNamed(context, LogInPage.route);
       }
     });
 
