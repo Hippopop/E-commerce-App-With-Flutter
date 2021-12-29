@@ -1,11 +1,8 @@
-import 'dart:math';
-
 import 'package:ecommerce_app/Interface/cart.dart';
 import 'package:ecommerce_app/Interface/favorites.dart';
 import 'package:ecommerce_app/Interface/homepage.dart';
 import 'package:ecommerce_app/Interface/productspage.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
-import 'package:ecommerce_app/Utils/alert_dialogue_box.dart';
 import 'package:ecommerce_app/Utils/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/grad_button.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
