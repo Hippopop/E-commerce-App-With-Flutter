@@ -47,7 +47,7 @@ String date = DateFormat.yMMMd().format(DateTime.now()).toString();
         alignment: Alignment.bottomCenter,
         child: Container(
           height: 500,
-          margin: EdgeInsets.only(bottom: 80, left: 12, right: 12),
+          margin: const EdgeInsets.only(bottom: 80, left: 12, right: 12),
           padding: EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: Colors.white,

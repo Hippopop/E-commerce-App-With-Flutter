@@ -6,7 +6,6 @@ import 'package:ecommerce_app/Utils/User_storage.dart';
 import 'package:ecommerce_app/Utils/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
-import 'package:ecommerce_app/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
