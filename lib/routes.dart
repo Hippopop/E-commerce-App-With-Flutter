@@ -1,14 +1,14 @@
-import 'package:ecommerce_app/Interface/cart.dart';
-import 'package:ecommerce_app/Interface/favorites.dart';
-import 'package:ecommerce_app/Interface/homepage.dart';
-import 'package:ecommerce_app/Interface/product_adder.dart';
-import 'package:ecommerce_app/Interface/productspage.dart';
-import 'package:ecommerce_app/Interface/registration.dart';
-import 'package:ecommerce_app/Interface/user_page.dart';
+import 'package:ecommerce_app/Screens/cart.dart';
+import 'package:ecommerce_app/Screens/favorites.dart';
+import 'package:ecommerce_app/Screens/homepage.dart';
+import 'package:ecommerce_app/Screens/product_adder.dart';
+import 'package:ecommerce_app/Screens/productspage.dart';
+import 'package:ecommerce_app/Screens/registration.dart';
+import 'package:ecommerce_app/Screens/user_page.dart';
 import 'package:flutter/material.dart';
-import 'Interface/login.dart';
-import 'Interface/productview.dart';
-import 'Utils/User_storage.dart';
+import 'Screens/login.dart';
+import 'Screens/productview.dart';
+import 'Controllers/User_storage.dart';
 
 
 final Map<String,WidgetBuilder> routes = {
