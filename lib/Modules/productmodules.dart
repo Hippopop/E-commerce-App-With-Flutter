@@ -1,4 +1,3 @@
-
 import 'package:ecommerce_app/Utils/utilities.dart';
 
 class ProductInfo {
