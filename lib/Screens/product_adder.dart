@@ -330,7 +330,7 @@ class _ProductAdderState extends State<ProductAdder> {
                           setState(() {
                             productList.add(ProductInfo(
                                 name: nameController.text,
-                                price: int.parse(priceController.text),
+                                price: double.parse(priceController.text),
                                 description: descController.text,
                                 images: imgList,
                                 sizes: sizeList));

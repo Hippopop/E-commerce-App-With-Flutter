@@ -1,4 +1,5 @@
-
+import 'package:ecommerce_app/Modules/shop_files.dart';
+import 'package:ecommerce_app/Modules/user_files.dart';
 import 'package:ecommerce_app/Screens/productspage.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Screens/Widgets/bottom_navigation.dart';
@@ -8,6 +9,7 @@ import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'cart.dart';
@@ -24,12 +26,11 @@ class _HomePageState extends State<HomePage> {
   Pages current = Pages.home;
   final CarouselController _controller = CarouselController();
   int serial = 0;
-
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    //ShopState shop = Provider.of<ShopState>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -151,137 +152,13 @@ class _HomePageState extends State<HomePage> {
                                     viewportFraction: 1,
                                     autoPlay: true,
                                   ),
-                                  items: List.from(productList.sublist(0, 5))
+                                  items: List.from(Provider.of<ShopState>(
+                                              context,
+                                              listen: false)
+                                          .allProducts
+                                          .sublist(0, 5))
                                       .map(
-                                        (product) => Row(
-                                          children: [
-                                            Expanded(
-                                              flex: 60,
-                                              child: Container(
-                                                margin: EdgeInsets.all(8),
-                                                width: double.infinity,
-                                                height: double.infinity,
-                                                clipBehavior: Clip.hardEdge,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                ),
-                                                child: Image.network(
-                                                  product.images[0],
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 40,
-                                              child: Container(
-                                                alignment: Alignment.centerLeft,
-                                                margin: EdgeInsets.all(8),
-                                                padding: EdgeInsets.only(
-                                                    bottom: 8, top: 5),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Spacer(
-                                                      flex: 1,
-                                                    ),
-                                                    Expanded(
-                                                      flex: 4,
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceAround,
-                                                        children: [
-                                                          Text(
-                                                            "Introducing",
-                                                            style: TextStyle(
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ),
-                                                          Text(
-                                                            product.name,
-                                                            style: TextStyle(
-                                                                fontSize: 16,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                        flex: 3,
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  right: 16.0,
-                                                                  top: 8),
-                                                          child: ElevatedButton(
-                                                            style: ElevatedButton.styleFrom(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(0),
-                                                                shape: RoundedRectangleBorder(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8))),
-                                                            onPressed: () {
-                                                              if(product.onCart) {
-                                                                Navigator.pushNamed(context, CartPage.route);
-                                                              } else {
-                                                                setState(() {
-                                                                  product.onCart = true;
-                                                                  product.cartCount = 1;
-                                                                  cart.add(product);
-                                                                });
-                                                                navState.setState(() {
-
-                                                                });
-                                                                Navigator.pushNamed(context, CartPage.route);
-                                                              }
-
-                                                            },
-                                                            child: Container(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              width: double
-                                                                  .infinity,
-                                                              height: double
-                                                                  .infinity,
-                                                              decoration: BoxDecoration(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8)),
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(3.0),
-                                                              child: Text(
-                                                                  (product.onCart)?"On Cart":"Buy Now",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .white,
-                                                                  )),
-                                                            ),
-                                                          ),
-                                                        ))
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                        (product) => _CarouselView(product: product,),
                                       )
                                       .toList(),
                                 ),
@@ -461,7 +338,31 @@ class _HomePageState extends State<HomePage> {
                                       borderRadius: BorderRadius.circular(8)),
                                 ),
                                 onPressed: () {
-                                  Navigator.pushReplacementNamed(context, ProductsPage.route);
+                                  /*Provider.of<ShopState>(context, listen: false)
+                                      .addProduct(ProductInfo(
+                                          id: 9,
+                                          name: "Mockup Shoes ",
+                                          price: 550,
+                                          description:
+                                              "It's just a mockup product. But you can add as you wish. Just add to a product to the product list. And it will instantly add as a new product. Have fun.",
+                                          images: [
+                                        "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+                                        "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzF8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+                                        "https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHNob2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                                      ],
+                                          sizes: [
+                                        "7",
+                                        "7.5",
+                                        "8",
+                                        "8.5",
+                                        "9",
+                                        "9.5",
+                                        "10",
+                                        "10.5",
+                                        "11",
+                                      ]));*/
+                                  Navigator.pushReplacementNamed(
+                                      context, ProductsPage.route);
                                 },
                                 child: Container(
                                     padding: EdgeInsets.all(10),
@@ -488,25 +389,26 @@ class _HomePageState extends State<HomePage> {
                           bottom: height * 0.020,
                         ),
                         width: 390,
-                        child: ListView.builder(
-                          //reverse: true,
-                          scrollDirection: Axis.horizontal,
-                          //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          // children: productList
-                          //     .map((product) =>
-                          //         productContainer(context, product))
-                          //     .toList(),
-                          itemCount: productList.length,
-                          itemBuilder: (context, index) {
-                            productList[index].id = index;
-                            return ProductContainer(
-                                product:  List.from(productList.reversed)[index], current: current,);
-                          },
+                        child: Consumer<ShopState>(
+                          builder: (context, shop, _) => ListView.builder(
+                            //reverse: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: shop.allProducts.length,
+                            itemBuilder: (context, index) {
+                              shop.allProducts[index].id = index;
+                              return ProductContainer(
+                                product:
+                                    List.from(shop.allProducts.reversed)[index],
+                                current: current,
+                              );
+                            },
+                          ),
                         ),
                       )),
                   Expanded(
                     flex: 6,
-                    child: cBottomNavigationBar(height: height, current: current),
+                    child:
+                        cBottomNavigationBar(height: height, current: current),
                   ),
                 ],
               ),
@@ -514,6 +416,133 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _CarouselView extends StatelessWidget {
+  const _CarouselView({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+  final ProductInfo product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 60,
+          child: Container(
+            margin: EdgeInsets.all(8),
+            width: double.infinity,
+            height: double.infinity,
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Image.network(
+              product.images[0],
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 40,
+          child: Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.all(8),
+            padding: EdgeInsets.only(bottom: 8, top: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Spacer(
+                  flex: 1,
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        "Introducing",
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        product.name,
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 16.0, top: 8),
+                      child: Consumer<UserProducts>(
+                        builder: (context, userProducts, _) => ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                          onPressed: () {
+                            if (userProducts.cartList.contains(product)) {
+                              Navigator.pushNamed(context, CartPage.route);
+                            } else {
+                              userProducts.addToCart(product);
+                              Navigator.pushNamed(context, CartPage.route);
+                            }
+                            // if (product
+                            //     .onCart) {
+                            //   Navigator.pushNamed(
+                            //       context,
+                            //       CartPage
+                            //           .route);
+                            // } else {
+                            //   setState(() {
+                            //     product.onCart =
+                            //         true;
+                            //     product.cartCount =
+                            //         1;
+                            //     cart.add(
+                            //         product);
+                            //   });
+                            //   navState
+                            //       .setState(
+                            //           () {});
+                            //   Navigator.pushNamed(
+                            //       context,
+                            //       CartPage
+                            //           .route);
+                            // }
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: double.infinity,
+                            height: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(8)),
+                            padding: const EdgeInsets.all(3.0),
+                            child: Text(
+                                (userProducts.cartList.contains(product))
+                                    ? "On Cart"
+                                    : "Buy Now",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                )),
+                          ),
+                        ),
+                      ),
+                    ))
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

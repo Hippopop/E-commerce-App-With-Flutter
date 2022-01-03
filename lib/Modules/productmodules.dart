@@ -3,7 +3,7 @@ import 'package:ecommerce_app/Utils/utilities.dart';
 class ProductInfo {
    int id;
   final String name;
-  final int price;
+  final double price;
   final String description;
   final List<String> images;
   final List<String> sizes;
@@ -35,8 +35,8 @@ List<ProductInfo> favoriteProducts = [];
 List<ProductInfo> cart = [
 ];
 
-int totalCost() {
-  int total = 0;
+double totalCost() {
+  double total = 0;
   cart.forEach((element) {
     total = total + (element.price * element.cartCount);
   }

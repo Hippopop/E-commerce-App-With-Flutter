@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/Modules/user_files.dart';
 import 'package:ecommerce_app/Screens/cart.dart';
 import 'package:ecommerce_app/Screens/favorites.dart';
 import 'package:ecommerce_app/Screens/homepage.dart';
@@ -6,6 +7,7 @@ import 'package:ecommerce_app/Screens/user_page.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 late _cBottomNavigationBarState navState;
@@ -165,7 +167,8 @@ class _cBottomNavigationBarState extends State<cBottomNavigationBar> {
                           color: (widget.current== Pages.cart)? Colors.purpleAccent: Colors.grey,
                         ),
 
-                        (cartOn)?Positioned(
+
+Consumer<UserProducts>(builder: (context, shop, _) => (shop.cartList.isEmpty)? SizedBox() : Positioned(
                           top: 3,
                           right: 0,
                           child: Container(
@@ -179,7 +182,11 @@ class _cBottomNavigationBarState extends State<cBottomNavigationBar> {
                               shape: BoxShape.circle,
                               color: Colors.red[400],
                             ),
-                          ),) : SizedBox(),
+                          ), 
+                          ),
+                          ),
+
+                        // (cartOn)?,) : SizedBox(),
                       ],
                     ),
                   ),
@@ -222,21 +229,26 @@ class _cBottomNavigationBarState extends State<cBottomNavigationBar> {
                           size: 26,
                           color: (widget.current== Pages.favorites)?Colors.purpleAccent: Colors.grey,
                         ),
-                        (favOn)?Positioned(
-                          top: 4,
-                          right: -2,
+
+                        
+                        Consumer<UserProducts>(builder: (context, shop, _) => (shop.favoriteList.isEmpty)? SizedBox() : Positioned(
+                          top: 3,
+                          right: 0,
                           child: Container(
-                          height: 10,
-                          width: 10,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 1.5
+                            height: 10,
+                            width: 10,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.white,
+                                  width: 1.5
+                              ),
+                              shape: BoxShape.circle,
+                              color: Colors.red[400],
                             ),
-                            shape: BoxShape.circle,
-                            color: Colors.red[400],
+                          ), 
                           ),
-                        ),) : SizedBox(),
+                          ),
+
                       ],
                     ),
                   ),

@@ -1,4 +1,6 @@
 import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Modules/shop_files.dart';
+import 'package:ecommerce_app/Modules/user_files.dart';
 import 'package:ecommerce_app/Screens/Widgets/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:ecommerce_app/Screens/Widgets/product_container.dart';
@@ -6,6 +8,7 @@ import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
 import 'cart.dart';
 
@@ -135,14 +138,16 @@ Pages current = Pages.store;
                   SliverPadding(
 
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                    sliver: SliverGrid.count(
-                      mainAxisSpacing: 10,
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.8,
-                      children: productList.map((product) {
-                        return ProductContainer(product: product, current: current,);
-
-                      }).toList(),),
+                    sliver: Consumer<ShopState>(
+                      builder: (context, shop, _) => SliverGrid.count(
+                        mainAxisSpacing: 10,
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.8,
+                        children: shop.allProducts.map((product) {
+                          return ProductContainer(product: product, current: current,);
+                    
+                        }).toList(),),
+                    ),
                   )
                 ],
               )),

@@ -1,15 +1,20 @@
+import 'package:ecommerce_app/Modules/shop_files.dart';
+import 'package:ecommerce_app/Modules/user_files.dart';
 import 'package:ecommerce_app/Screens/splashscreen.dart';
 import 'package:ecommerce_app/Controllers/User_storage.dart';
 import 'package:ecommerce_app/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await DataHandler.start();
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => ShopState()),
+      ChangeNotifierProvider(create: (context) => UserProducts()),
+    ],
+    child: const MyApp()));
 }
-
-
-
 
 //For those who are trying to learn from it.
 // First of all never ever manage your widgets state like this. Do it for fun or small projects like this. 
@@ -20,11 +25,6 @@ void main() async{
 //If anyone wants to help me. I'd much  appreciate it.
 // Thank you. 
 //-mostafij.
-
-
-
-
-
 
 class MyApp extends StatelessWidget {
 

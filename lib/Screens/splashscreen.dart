@@ -21,13 +21,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 2), () {
       if(SplashScreen.currentUser.name == "name"){
         Navigator.pushReplacementNamed(context, RegistrationForm.route);
 
       } else {
         //currentUser = user;
-        Navigator.pushReplacementNamed(context, LogInPage.route);
+        Navigator.pushReplacementNamed(context, HomePage.route);
       }
     });
 

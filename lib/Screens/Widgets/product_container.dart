@@ -1,14 +1,16 @@
+import 'package:ecommerce_app/Modules/user_files.dart';
 import 'package:ecommerce_app/Screens/productview.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Screens/Widgets/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductContainer extends StatefulWidget {
   ProductInfo product;
   Pages current;
-  ProductContainer({Key? key, required this.product, required this.current}) : super(key: key);
-
+  ProductContainer({Key? key, required this.product, required this.current})
+      : super(key: key);
 
   @override
   _ProductContainerState createState() => _ProductContainerState();
@@ -33,7 +35,13 @@ class _ProductContainerState extends State<ProductContainer> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProductViewPage(product: widget.product, current: widget.current,)));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductViewPage(
+                                    product: widget.product,
+                                    current: widget.current,
+                                  )));
                     },
                     child: Hero(
                       tag: widget.product.id,
@@ -58,28 +66,34 @@ class _ProductContainerState extends State<ProductContainer> {
                       right: 12,
                       child: GestureDetector(
                         onTap: () {
-                          if(!widget.product.isFav){
-                            setState(() {
-                              widget.product.isFav = !widget.product.isFav;
-                              favoriteProducts.add(widget.product);
-                            }) ;
-                          } else {
-                            setState(() {
-                              widget.product.isFav = !widget.product.isFav;
-                              favoriteProducts.remove(widget.product);
-                            }) ;
-                          }
-                          if(favoriteProducts.length == 0) {
-                            navState.setState(() {
-                              navState.favOn = false;
-                            });
-                          } else {
-                            navState.setState(() {
-                              navState.favOn = true;
-                            });
-                          }
+                          Provider.of<UserProducts>(context, listen: false)
+                              .productFav(widget.product);
+                              setState(() {
+                                
+                              });
+                          // if (!widget.product.isFav) {
+                          //   setState(() {
+                          //     widget.product.isFav = !widget.product.isFav;
+                          //     favoriteProducts.add(widget.product);
+                          //   });
+                          // } else {
+                          //   setState(() {
+                          //     widget.product.isFav = !widget.product.isFav;
+                          //     favoriteProducts.remove(widget.product);
+                          //   });
+                          // }
+                          // if (favoriteProducts.length == 0) {
+                          //   navState.setState(() {
+                          //     navState.favOn = false;
+                          //   });
+                          // } else {
+                          //   navState.setState(() {
+                          //     navState.favOn = true;
+                          //   });
+                          // }
                         },
-                        child: (widget.product.isFav)
+                        child: Consumer<UserProducts>(
+                          builder: (context, value, child) =>  (value.favoriteList.contains(widget.product))
                             ? Icon(
                                 Icons.favorite,
                                 color: Colors.red[300],
@@ -88,6 +102,7 @@ class _ProductContainerState extends State<ProductContainer> {
                                 Icons.favorite_outline_rounded,
                                 color: Colors.grey,
                               ),
+                        )
                       ))
                 ],
               )),
@@ -134,46 +149,61 @@ class _ProductContainerState extends State<ProductContainer> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: (){
-                              if(!widget.product.onCart){
-                                setState(() {
+                            onTap: () {
+                              if (widget.product.onCart) {
+                                Provider.of<UserProducts>(context,
+                                        listen: false)
+                                    .reduceCart(widget.product);
+                                setState(() {});
+                              } else {
+                                Provider.of<UserProducts>(context,
+                                        listen: false)
+                                    .addToCart(widget.product);
+                                setState(() {});
+                              }
+                              // if(!widget.product.onCart){
+                              //   setState(() {
 
-                                  widget.product.onCart = true;
-                                  widget.product.cartCount = 1;
-                                  cart.add(widget.product);
-                                });
-                              } else {
-                                setState(() {
-                                  widget.product.onCart = false;
-                                  widget.product.cartCount = 0;
-                                  cart.remove(widget.product);
-                                });
-                              }
-                              if(cart.length == 0) {
-                                navState.setState(() {
-                                  navState.cartOn = false;
-                                });
-                              } else {
-                                navState.setState(() {
-                                  navState.cartOn = true;
-                                });
-                              }
+                              //     widget.product.onCart = true;
+                              //     widget.product.cartCount = 1;
+                              //     cart.add(widget.product);
+                              //   });
+                              // } else {
+                              //   setState(() {
+                              //     widget.product.onCart = false;
+                              //     widget.product.cartCount = 0;
+                              //     cart.remove(widget.product);
+                              //   });
+                              // }
+                              // if(cart.length == 0) {
+                              //   navState.setState(() {
+                              //     navState.cartOn = false;
+                              //   });
+                              // } else {
+                              //   navState.setState(() {
+                              //     navState.cartOn = true;
+                              //   });
+                              // }
                             },
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    width: 0.8,
-                                    color: Colors.black,
-                                  )),
-                              child: (!widget.product.onCart)? Icon(
-                                Icons.add,
-                                size: 16,
-                              ) : Icon(
-                                Icons.done_all_sharp,
-                                color: Colors.blue,
-                                size: 16,
+                            child: Consumer<UserProducts>(
+                              builder: (context, userProducts, _) => Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      width: 0.8,
+                                      color: Colors.black,
+                                    )),
+                                child: (!userProducts.cartList.contains(widget.product))
+                                    ? Icon(
+                                        Icons.add,
+                                        size: 16,
+                                      )
+                                    : Icon(
+                                        Icons.done_all_sharp,
+                                        color: Colors.blue,
+                                        size: 16,
+                                      ),
                               ),
                             ),
                           )
