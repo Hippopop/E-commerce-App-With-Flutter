@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/Screens/productview.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Utils/pages.dart';
+import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -172,15 +174,7 @@ String date = DateFormat.yMMMd().format(DateTime.now()).toString();
                 child: GestureDetector(
                   onTap: (){
                     Review store = Review(time: time, date: date, rating: sliderValue, comment: reviewCont.text, img: "nai");
-                    widget.product.review.add(store);
-                    productPageState.setState(() {
-                    });
-                    SnackBar(
-                      duration: Duration(milliseconds: 50000),
-                      content: const Text('Your review has been updated.'),
-                    );
-
-                    Navigator.pop(context);
+                    Navigator.pop(context, store);
                   },
                   child: Hero(
                     tag: "reviewButton",

@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Modules/user_files.dart';
 import 'package:ecommerce_app/Screens/Widgets/cart_item.dart';
 import 'package:ecommerce_app/Screens/Widgets/grad_button.dart';
@@ -74,7 +73,7 @@ class _CartPageState extends State<CartPage> {
                             (user.cartList.isEmpty)
                                 ? "Let's Start Shopping!"
                                 : ("You have " +
-                                    user.cartList.length.toString() +
+                                    Provider.of<UserProducts>(context).cartList.length.toString() +
                                     " items on your cart."),
                             style: TextStyle(fontWeight: FontWeight.w500),
                           ),
@@ -289,11 +288,12 @@ class _CartPageState extends State<CartPage> {
                   child: GradButton(
                       text: "Place Order",
                       onPress: () {
-                        setState(() {
-                          ordered.addAll(cart);
-                          cart.clear();
-                          //total = 0;
-                        });
+                        Provider.of<UserProducts>(context, listen: false).onOrder();
+                        // setState(() {
+                        //   ordered.addAll(cart);
+                        //   cart.clear();
+                        //   //total = 0;
+                        // });
                         final snackBar = SnackBar(
                           content:
                               const Text('Thank You! You Orders are placed.'),

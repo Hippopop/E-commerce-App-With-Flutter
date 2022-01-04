@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/Modules/user_files.dart';
 import 'package:ecommerce_app/Screens/product_adder.dart';
 import 'package:ecommerce_app/Screens/registration.dart';
 import 'package:ecommerce_app/Screens/splashscreen.dart';
@@ -8,6 +9,7 @@ import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class UserPage extends StatefulWidget {
   static final route = "/Interface/user_page";
@@ -25,6 +27,7 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    UserProducts data = Provider.of<UserProducts>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -268,7 +271,7 @@ class _UserPageState extends State<UserPage> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(favoriteProducts.length.toString(),
+                                                Text(data.favoriteList.length.toString(),
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 24,
@@ -302,7 +305,7 @@ class _UserPageState extends State<UserPage> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(cart.length.toString(),
+                                                Text(data.cartList.length.toString(),
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 24,
@@ -337,7 +340,7 @@ class _UserPageState extends State<UserPage> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(ordered.length.toString(),
+                                                Text(data.ordered.length.toString(),
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 24,

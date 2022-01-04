@@ -6,7 +6,6 @@ import 'package:ecommerce_app/Screens/Widgets/bottom_navigation.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:ecommerce_app/Screens/Widgets/product_container.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';

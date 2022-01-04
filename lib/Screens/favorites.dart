@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/Modules/user_files.dart';
 import 'package:ecommerce_app/Screens/productview.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Screens/Widgets/bottom_navigation.dart';
@@ -6,6 +7,7 @@ import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class FavoritesPage extends StatefulWidget {
@@ -54,7 +56,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("Your Favorites", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),),
-                          Text((favoriteProducts.length == 0)?"Let's find something favorite!" : ("You have "+favoriteProducts.length.toString()+" favorite items."), style: TextStyle(fontWeight: FontWeight.w500),),
+                          Text((Provider.of<UserProducts>(context).favoriteList.isEmpty)?"Let's find something favorite!" : ("You have "+Provider.of<UserProducts>(context).favoriteList.length.toString()+" favorite items."), style: TextStyle(fontWeight: FontWeight.w500),),
                         ],
                       ),
                     ),
@@ -63,36 +65,41 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 Expanded(
                     flex: 80,
                     child: Container(
-                      child: (favoriteProducts.length == 0)? Center(
+                      child: (Provider.of<UserProducts>(context).favoriteList.isEmpty)? Center(
                         child: Image.asset("Assets/images/undraw_Super_thank_you_re_f8bo.png"),
                       ) :ListView.builder(
                         padding: EdgeInsets.all(0),
-                        itemCount: favoriteProducts.length,
+                        itemCount: Provider.of<UserProducts>(context).favoriteList.length,
                         itemBuilder: (context, index)
                         {
-                          ProductInfo product = favoriteProducts[index];
-                        return Dismissible(
+                          ProductInfo product = Provider.of<UserProducts>(context).favoriteList[index];
+
+                          return Dismissible(
                           onDismissed: (direction){
                             if(direction == DismissDirection.startToEnd){
-                              setState(() {
-                                favoriteProducts[index].isFav = false;
-                                favoriteProducts.removeAt(index);
-                              });
-                              navState.setState(() {
-                                if(favoriteProducts.isEmpty){
-                                  navState.favOn = false;
-                                }
-                              });
+                              Provider.of<UserProducts>(context, listen: false).productFav(product);
+                              // setState(() {
+                              //   favoriteProducts[index].isFav = false;
+                              //   favoriteProducts.removeAt(index);
+                              // });
+                              // navState.setState(() {
+                              //   if(favoriteProducts.isEmpty){
+                              //     navState.favOn = false;
+                              //   }
+                              // });
                             }
                             if(direction == DismissDirection.endToStart){
-                              setState(() {
-                                cart.add(product);
-                                product.onCart = true;
-                                product.cartCount++;
-                                favoriteProducts[index].isFav = false;
-                                favoriteProducts.removeAt(index);
+                              Provider.of<UserProducts>(context, listen: false).productFav(product);
+                              Provider.of<UserProducts>(context, listen: false).addToCart(product);
 
-                              });
+                              // setState(() {
+                              //   cart.add(product);
+                              //   product.onCart = true;
+                              //   product.cartCount++;
+                              //   favoriteProducts[index].isFav = false;
+                              //   favoriteProducts.removeAt(index);
+                              //
+                              // });
                             }
                           },
                           background: Container(

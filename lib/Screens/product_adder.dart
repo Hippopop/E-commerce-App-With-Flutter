@@ -1,9 +1,11 @@
+import 'package:ecommerce_app/Modules/shop_files.dart';
 import 'package:ecommerce_app/Screens/homepage.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Screens/Widgets/grad_button.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductAdder extends StatefulWidget {
   static final route = "/Interface/product_adder";
@@ -327,14 +329,15 @@ class _ProductAdderState extends State<ProductAdder> {
                     child: GradButton(
                         text: "Add To Shop",
                         onPress: () {
-                          setState(() {
-                            productList.add(ProductInfo(
-                                name: nameController.text,
-                                price: double.parse(priceController.text),
-                                description: descController.text,
-                                images: imgList,
-                                sizes: sizeList));
-                          });
+                          Provider.of<ShopState>(context, listen: false).addProduct(ProductInfo(
+                              name: nameController.text,
+                              price: double.parse(priceController.text),
+                              description: descController.text,
+                              images: imgList,
+                              sizes: sizeList));
+                          // setState(() {
+                          //
+                          // });
                           Navigator.pushNamed(context, HomePage.route);
                         }),
                   ),

@@ -35,13 +35,14 @@ Review({required this.time, required this.date, required this.rating, required t
 
 
 class Helper{
-  static void showDialog(BuildContext context, ProductInfo product) {
-    showGeneralDialog(
+  static  showDialog(BuildContext context, ProductInfo product) {
+    return showGeneralDialog(
       barrierLabel: "Barrier",
       barrierDismissible: true,
       barrierColor: Colors.black.withOpacity(0.5),
       transitionDuration: Duration(milliseconds: 300),
       context: context,
+      useRootNavigator: true,
       pageBuilder: (_, __, ___) {
         return ReviewGetter(product: product,);
       },

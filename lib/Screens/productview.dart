@@ -529,8 +529,18 @@ class _ProductViewPageState extends State<ProductViewPage> {
                     ),
                     SliverToBoxAdapter(
                       child: GestureDetector(
-                        onTap: () {
-                          Helper.showDialog(context, widget.product);
+                        onTap: () async {
+                         final data = await Helper.showDialog(context, widget.product);
+                          setState(() {
+widget.product.review.add(data);
+                          });
+                          final snackBar = SnackBar(
+                            duration: Duration(seconds: 3),
+                            content: const Text('Your review has been updated.'),
+                          );
+                         ScaffoldMessenger.of(context)
+                         ..removeCurrentSnackBar()
+                             ..showSnackBar(snackBar);
                         },
                         child: Hero(
                           tag: "reviewButton",
