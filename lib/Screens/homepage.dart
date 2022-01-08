@@ -443,6 +443,9 @@ class _CarouselView extends StatelessWidget {
             child: Image.network(
               product.images[0],
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Container();
+              },
             ),
           ),
         ),

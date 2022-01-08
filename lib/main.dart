@@ -15,17 +15,6 @@ void main() async{
     ],
     child: const MyApp()));
 }
-
-//For those who are trying to learn from it.
-// First of all never ever manage your widgets state like this. Do it for fun or small projects like this. 
-// But if you wanna build a good app for yourself or anything. Always use a state managing tool. Don't do it like this.
-// Also don't create a mess like me. Make your code more organized. And make it more readable. 
-// I'll try my best to improve it in future as much as i can. Hopefully i will add use the provider and manage state with it.
-// Also i will try to fix other small stuffs and organizing issues. 
-//If anyone wants to help me. I'd much  appreciate it.
-// Thank you. 
-//-mostafij.
-
 class MyApp extends StatelessWidget {
 
   const MyApp({Key? key}) : super(key: key);
