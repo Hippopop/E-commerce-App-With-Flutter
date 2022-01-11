@@ -8,7 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'login.dart';
 import 'dart:async';
 class SplashScreen extends StatefulWidget {
-  static var currentUser = ((DataHandler.loadData()))?? User("name", "email", "phone", "img"," pass");
+  //static var currentUser = ((DataHandler.loadData()))?? User("name", "email", "phone", "img"," pass");
 /*
  static UserStorage user = UserStorage(currentUser: DataHandler.loadData());
 */
@@ -22,13 +22,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 2), () {
-      if(SplashScreen.currentUser.name == "name"){
-        Navigator.pushReplacementNamed(context, RegistrationForm.route);
-
-      } else {
-        //currentUser = user;
-        Navigator.pushReplacementNamed(context, HomePage.route);
-      }
+      Navigator.pushReplacementNamed(context, LogInPage.route);
+      // if(SplashScreen.currentUser.name == "name"){
+      //   Navigator.pushReplacementNamed(context, RegistrationForm.route);
+      //
+      // } else {
+      //   //currentUser = user;
+      //   Navigator.pushReplacementNamed(context, LogInPage.route);
+      // }
     });
 
     return Scaffold(

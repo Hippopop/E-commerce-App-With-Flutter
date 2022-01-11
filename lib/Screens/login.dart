@@ -2,6 +2,8 @@ import 'package:ecommerce_app/Screens/homepage.dart';
 import 'package:ecommerce_app/Screens/registration.dart';
 import 'package:ecommerce_app/Screens/splashscreen.dart';
 import 'package:ecommerce_app/Screens/Widgets/grad_button.dart';
+import 'package:ecommerce_app/Services/authentication.dart';
+import 'package:ecommerce_app/Services/firestore_database.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 
@@ -85,10 +87,10 @@ FocusNode pass = FocusNode();
                         focusNode: user,
                         controller: userController,
                         decoration: inStyle.copyWith(
-                          labelText: "User",
+                          labelText: "Email",
                           errorText: validate? "Please enter the right user name!": null,
                           prefixIcon: Icon(
-                            Icons.account_circle_rounded,
+                            Icons.mail_outlined,
                             size: 24,
                           ),
                           suffixIcon: GestureDetector(
@@ -133,7 +135,7 @@ FocusNode pass = FocusNode();
                                 });*/
     if(userController.text == "") {
     user.requestFocus();
-    } if(userController.text == SplashScreen.currentUser.name){
+    } if(userController.text.contains('@')){
 setState(() {
   active = userController.text;
   user.unfocus();
@@ -149,8 +151,36 @@ setState(() {
 
                           }) : GradButton(
                               text: "Log in",
-                              onPress: () {
-                                if(passController.text == "") {
+                              onPress: () async{
+                                if(passController.text == "" || passController.text.length < 6) {
+                                  pass.requestFocus();
+                                } if(passController.text.length >=6){
+                                  final user = await AuthenticationController().logUser(active, passController.text);
+                                  if(user == null){
+                                    setState(() {
+                                      obsecure = true;
+                                       active = "blocked";
+                                       validate = false;
+                                       passController.clear();
+                                       userController.clear();
+                                    });
+                                    final snackBar = SnackBar(
+                                      content:
+                                      const Text('Wrong user info'),
+                                    );
+                                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                  } else {
+                                    await FireStoreBase().getUserData(user);
+                                    Navigator.pushNamed(context, HomePage.route);
+                                  }
+                                  //Navigator.pushNamed(context, HomePage.route);
+                                }
+                                // else {
+                                //   setState(() {
+                                //     validate = true;
+                                //   });
+                                // }
+                               /* if(passController.text == "") {
                                   pass.requestFocus();
                                 } if(passController.text == SplashScreen.currentUser.pass){
                                   Navigator.pushNamed(context, HomePage.route);
@@ -159,7 +189,7 @@ setState(() {
                                   setState(() {
                                     validate = true;
                                   });
-                                }
+                                }*/
                               },
                           ),
                       ),

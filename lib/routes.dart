@@ -22,4 +22,4 @@ UserPage.route: (context) => const UserPage(),
 ProductAdder.route: (context) => const ProductAdder(),
 };
 
- late User currentUser ;
+ //late User currentUser ;

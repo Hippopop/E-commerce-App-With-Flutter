@@ -1,5 +1,6 @@
+import 'package:ecommerce_app/Modules/productmodules.dart';
+import 'package:ecommerce_app/Modules/user_module.dart';
 import 'package:ecommerce_app/Screens/splashscreen.dart';
-import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
 
 
@@ -32,7 +33,7 @@ final Review review;
                         padding: const EdgeInsets.all(5.0),
                         child: CircleAvatar(
                           radius: 30,
-                          backgroundImage: NetworkImage((review.img == "nai")?SplashScreen.currentUser.img: review.img),
+                          backgroundImage: NetworkImage((review.img == "nai")?UserBox.currentUser.imgLink/*SplashScreen.currentUser.img*/: review.img),
                         ),
                       )),
                   Expanded(
@@ -45,7 +46,7 @@ final Review review;
                           children: [
                             Expanded(child: Align(
                                 alignment: Alignment.centerLeft,
-                                child: Text((review.img == "nai")?SplashScreen.currentUser.name: "Persons Name",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,),))),
+                                child: Text((review.img == "nai")?UserBox.currentUser.name/*SplashScreen.currentUser.name*/: "Persons Name",style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,),))),
                             Expanded(child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

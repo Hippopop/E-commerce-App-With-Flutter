@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "324980436861",
+    "project_id": "shopin-95b70",
+    "storage_bucket": "shopin-95b70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324980436861:android:83aa83d3a79589c7102614",
+        "android_client_info": {
+          "package_name": "com.DevTri.Shopin_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324980436861-75ifnkqcv7bt2td8ftl2rahesk4ttuic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhh3ynbCmQFp6SEnh0GjJNYPGX2gjObWs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324980436861-75ifnkqcv7bt2td8ftl2rahesk4ttuic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

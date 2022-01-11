@@ -1,4 +1,11 @@
-import 'package:ecommerce_app/Utils/utilities.dart';
+class Review {
+  String date;
+  String time;
+  String comment;
+  double rating;
+  String img;
+  Review({required this.time, required this.date, required this.rating, required this.comment, required this.img, });
+}
 
 class ProductInfo {
    int id;
@@ -23,30 +30,7 @@ bool onCart = false;
     Review(time: "12.25 PM", date: "Dec 28, 2021", rating: 5, comment:  "This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN.", img:"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",),
     Review(time: "12.25 PM", date: "Dec 28, 2021", rating: 5, comment:  "This thing was sooo awsome and worth all the money. I love this shop. Thank you SHOPIN.", img:"https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTN8fHBlb3BsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",),
   ];
- /* int get getId => id;
-  String get getName => name;
-  int get getPrice => price;
-  String get getDesc => description;
-  List<String> get getImgs => images;
-  List<String> get getSizes => sizes;*/
 }
-
-List<ProductInfo> favoriteProducts = [];
-List<ProductInfo> cart = [
-];
-
-double totalCost() {
-  double total = 0;
-  cart.forEach((element) {
-    total = total + (element.price * element.cartCount);
-  }
-  );
-  return total;
-}
-List<ProductInfo> ordered = [];
-
-
-
 
 
 

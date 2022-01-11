@@ -1,15 +1,19 @@
 import 'package:ecommerce_app/Modules/user_files.dart';
+import 'package:ecommerce_app/Modules/user_module.dart';
 import 'package:ecommerce_app/Screens/product_adder.dart';
 import 'package:ecommerce_app/Screens/registration.dart';
 import 'package:ecommerce_app/Screens/splashscreen.dart';
 import 'package:ecommerce_app/Modules/productmodules.dart';
 import 'package:ecommerce_app/Controllers/User_storage.dart';
 import 'package:ecommerce_app/Screens/Widgets/bottom_navigation.dart';
+import 'package:ecommerce_app/Services/authentication.dart';
 import 'package:ecommerce_app/Utils/pages.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'login.dart';
 
 class UserPage extends StatefulWidget {
   static final route = "/Interface/user_page";
@@ -75,7 +79,8 @@ class _UserPageState extends State<UserPage> {
                                         child: CircleAvatar(
                                           radius: 40,
                                           backgroundImage: NetworkImage(
-                                            SplashScreen.currentUser.img,
+                                            UserBox.currentUser.imgLink,
+                                           // SplashScreen.currentUser.img,
                                           ),
                                         ),
                                       ),
@@ -119,7 +124,8 @@ class _UserPageState extends State<UserPage> {
                                                       ),
                                                       children: [
                                                         TextSpan(
-                                                          text: SplashScreen.currentUser.name,
+                                                          text: UserBox.currentUser.email,
+                                                          //SplashScreen.currentUser.name,
                                                           style: TextStyle(
                                                             fontSize: 16,
                                                             color: bgColor,
@@ -142,7 +148,8 @@ class _UserPageState extends State<UserPage> {
                                           flex: 3,
                                           child: Container(
                                             child: Text(
-                                              SplashScreen.currentUser.email,
+                                              UserBox.currentUser.name,
+                                              // SplashScreen.currentUser.email,
                                               style: TextStyle(
                                                 letterSpacing: 1,
                                                 fontSize: 24,
@@ -170,8 +177,9 @@ class _UserPageState extends State<UserPage> {
                                             action: SnackBarAction(
                                               label: "Yes.",
                                               onPressed: (){
-                                                DataHandler.clearAllData();
-                                                Navigator.pushReplacementNamed(context, RegistrationForm.route);
+                                               // DataHandler.clearAllData();
+                                                AuthenticationController().signOut();
+                                                Navigator.pushReplacementNamed(context, LogInPage.route);
                                               },
                                             ),
 

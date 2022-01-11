@@ -1,4 +1,15 @@
 # This is a generated file; do not edit or check into version control.
+cloud_firestore=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\cloud_firestore-3.1.6\\
+cloud_firestore_web=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\cloud_firestore_web-2.6.6\\
+firebase_auth=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth-3.3.5\\
+firebase_auth_web=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth_web-3.3.6\\
+firebase_core=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-1.11.0\\
+firebase_core_web=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core_web-1.5.3\\
+firebase_storage=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_storage-10.2.5\\
+firebase_storage_web=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_storage_web-3.2.6\\
+flutter_plugin_android_lifecycle=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_plugin_android_lifecycle-2.0.5\\
+image_picker=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\image_picker-0.8.4+4\\
+image_picker_for_web=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\image_picker_for_web-2.1.4\\
 path_provider_linux=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_linux-2.1.4\\
 path_provider_windows=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_windows-2.0.4\\
 shared_preferences=C:\\SDK_FILES\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\shared_preferences-2.0.11\\

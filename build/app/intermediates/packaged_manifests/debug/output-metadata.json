@@ -4,7 +4,7 @@
     "type": "PACKAGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "com.example.ecommerce_app",
+  "applicationId": "com.DevTri.Shopin_app",
   "variantName": "debug",
   "elements": [
     {

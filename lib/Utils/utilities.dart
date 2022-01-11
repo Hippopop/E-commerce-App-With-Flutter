@@ -21,26 +21,13 @@ TextStyle smallSub = TextStyle(
   fontSize: 18,
 );
 
-
-
-class Review {
-String date;
-String time;
-String comment;
-double rating;
-String img;
-
-Review({required this.time, required this.date, required this.rating, required this.comment, required this.img, });
-}
-
-
 class Helper{
   static  showDialog(BuildContext context, ProductInfo product) {
     return showGeneralDialog(
       barrierLabel: "Barrier",
       barrierDismissible: true,
       barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: Duration(milliseconds: 300),
+      transitionDuration: const Duration(milliseconds: 300),
       context: context,
       useRootNavigator: true,
       pageBuilder: (_, __, ___) {

@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 
-late _cBottomNavigationBarState navState;
 
 class cBottomNavigationBar extends StatefulWidget {
   const cBottomNavigationBar({
@@ -24,8 +23,7 @@ class cBottomNavigationBar extends StatefulWidget {
 
   @override
   State<cBottomNavigationBar> createState() {
-    navState = _cBottomNavigationBarState();
-    return navState;
+    return _cBottomNavigationBarState();
   }
 }
 
@@ -37,26 +35,9 @@ class _cBottomNavigationBarState extends State<cBottomNavigationBar> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    if (favoriteProducts.length > 0) {
-      favOn = true;
-    }
-    if (cart.length > 0) {
-      cartOn = true;
-    }
   }
   @override
   Widget build(BuildContext context) {
-    if (favoriteProducts.length > 0) {
-      favOn = true;
-    } else {
-      favOn = false;
-    }
-    if (cart.length > 0) {
-      cartOn = true;
-    } else {
-      cartOn = false;
-    }
     return Container(
       height: 73.55,
       padding: EdgeInsets.symmetric(
