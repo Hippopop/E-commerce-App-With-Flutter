@@ -51,12 +51,12 @@ class _MyAppState extends State<MyApp> {
         body: StreamBuilder<User?>(
             stream: AuthenticationController().userCheck.distinct(),
             builder:(context, snapshot) {
-            if(snapshot.hasError || snapshot.connectionState == ConnectionState.waiting) {return SplashScreen();}
+            if(snapshot.hasError || snapshot.connectionState == ConnectionState.waiting) {return SplashScreen(state: 4,);}
             if(snapshot.hasData) {
-               FireStoreBase().getUserData(snapshot.data!);
-              return HomePage();
+
+              return SplashScreen(state: 3, user: snapshot.data,);
             } else {
-              return const LogInPage();
+              return  SplashScreen(state: 2);
             }
             },
     ),

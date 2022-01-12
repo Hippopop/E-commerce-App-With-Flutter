@@ -2,9 +2,11 @@ import 'package:ecommerce_app/Screens/homepage.dart';
 import 'package:ecommerce_app/Screens/login.dart';
 import 'package:ecommerce_app/Screens/registration.dart';
 import 'package:ecommerce_app/Controllers/User_storage.dart';
+import 'package:ecommerce_app/Services/firestore_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'login.dart';
 import 'dart:async';
 class SplashScreen extends StatefulWidget {
@@ -12,8 +14,9 @@ class SplashScreen extends StatefulWidget {
 /*
  static UserStorage user = UserStorage(currentUser: DataHandler.loadData());
 */
-  SplashScreen({Key? key}) : super(key: key);
-
+  SplashScreen({Key? key, required this.state, this.user}) : super(key: key);
+int state;
+User? user;
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -21,25 +24,24 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, LogInPage.route);
-      // if(SplashScreen.currentUser.name == "name"){
-      //   Navigator.pushReplacementNamed(context, RegistrationForm.route);
-      //
-      // } else {
-      //   //currentUser = user;
-      //   Navigator.pushReplacementNamed(context, LogInPage.route);
-      // }
+    Timer(Duration(seconds: widget.state), () async{
+      if(widget.state == 2) {
+        Navigator.pushReplacementNamed(context, LogInPage.route);
+      }
+      if(widget.state == 3) {
+        await FireStoreBase().getUserData(widget.user!);
+        Navigator.pushReplacementNamed(context, HomePage.route);
+      }
     });
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          Spacer(
+          const Spacer(
             flex: 3,
           ),
-          Expanded(
+          const Expanded(
             flex: 3,
             child: Align(
               alignment: Alignment.bottomCenter,
@@ -48,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
           ),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           Expanded(
@@ -67,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Text(
                       "SDMGA Flutter Team ",
                     ),

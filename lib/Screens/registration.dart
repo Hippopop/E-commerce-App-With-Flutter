@@ -9,6 +9,7 @@ import 'package:ecommerce_app/Services/firestore_database.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -46,6 +47,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   }
   File? _image;
   Gender current = Gender.male;
+  bool loading = false;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -66,6 +68,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Container(
@@ -95,7 +98,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                   child: CircleAvatar(
                                     radius: 150,
                                     backgroundImage: const AssetImage(
-                                      "Assets/images/undraw_Swipe_profiles_re_tvqm.png",
+                                      "Assets/images/undraw_male_avatar_323b.png",
                                     ),
                                     foregroundImage: (_image == null)? null: FileImage(_image!),
                                   )
@@ -188,6 +191,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                 children: [
                                                   Card(
+
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(16),
+                                                    ),
+                                                    elevation: 3,
+                                                    color: Colors.grey[100],
                                                     child: Row(
                                                       children: [
                                                         Radio(value: Gender.male, groupValue: current, onChanged: (Gender? value) {
@@ -207,6 +216,11 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                                     ),
                                                   ),
                                                   Card(
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(16),
+                                                    ),
+                                                    elevation: 3,
+                                                    color: Colors.grey[100],
                                                     child: Row(
                                                       children: [
                                                         Radio(value: Gender.female, groupValue: current, onChanged: (Gender? value) {
@@ -226,6 +240,11 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                                     ),
                                                   ),
                                                   Card(
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(16),
+                                                    ),
+                                                    elevation: 3,
+                                                    color: Colors.grey[100],
                                                     child: Row(
                                                       children: [
                                                         Radio(value: Gender.other, groupValue: current, onChanged: (Gender? value) {
@@ -272,7 +291,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                                   if (name.length < 4) {
                                                     return "Name is too short!";
                                                   }
-                                                  if (name.contains(" ")) {
+                                                  if (name.contains("@")) {
                                                     return "Can't have a space in name";
                                                   }
                                                 },
@@ -290,8 +309,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               ),
                                               TextFormField(
                                                 controller: mailCont,
-                                                validator: (name) {
-                                                  if (name!.isEmpty) {
+                                                validator: (mail) {
+                                                  if (mail!.isEmpty || !mail.contains('@')) {
                                                     return "Please enter a valid mail.";
                                                   }
                                                 },
@@ -315,8 +334,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               TextFormField(
                                                 controller: passCont,
                                                 validator: (name) {
-                                                  if (name!.isEmpty ||
-                                                      name == null) {
+                                                  if (name!.isEmpty) {
                                                     return "Please enter a valid password.";
                                                   }
                                                 },
@@ -338,8 +356,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               ),
                                               TextFormField(
                                                 validator: (name) {
-                                                  if (name!.isEmpty ||
-                                                      name == null) {
+                                                  if (name!.isEmpty) {
                                                     return "Please enter a password.";
                                                   }
                                                 },
@@ -366,15 +383,30 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                       )),
                                   Expanded(
                                     flex: 8,
-                                    child: GradButton(
+                                    child: (loading)? const SpinKitThreeInOut(
+                                      color: Color(0xaaa6c63ff),
+                                    ): GradButton(
                                         text: "Submit",
                                         onPress: () async {
 
-                                          if(formKey.currentState!.validate()){
+                                          if(formKey.currentState!.validate() && _image!= null){
+                                            setState(() {
+                                              loading = true;
+                                            });
                                             final User user = await AuthenticationController().registerUser(mailCont.text, passCont.text);
                                             await FireStoreBase().uploadUserData(user, nameCont.text, user.email!, passCont.text, current.name, _image!);
                                             FireStoreBase().getUserData(user);
                                             Navigator.pushReplacementNamed(context, HomePage.route);
+                                          }
+                                          else {
+                                            setState(() {
+                                              loading = false;
+                                            });
+                                            final snackBar = SnackBar(
+                                              content:
+                                              const Text('Unusable information. Please fix.'),
+                                            );
+                                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
                                           }
 
 
@@ -394,8 +426,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                           //        context, HomePage.route);
                                           //      SplashScreen.currentUser = me;
                                           //   }
-                                          setState(() {});
-                                        }),
+
+                                        }
+                                        ),
                                   ),
                                 ],
                               ),

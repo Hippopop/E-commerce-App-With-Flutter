@@ -172,7 +172,7 @@ class _UserPageState extends State<UserPage> {
                                       children: [
                                         GestureDetector(
                                           onTap:() { final snackBar = SnackBar(
-                                            duration: Duration(milliseconds: 50000),
+                                            duration: Duration(milliseconds: 5000),
                                             content: const Text('You sure you want to logout??'),
                                             action: SnackBarAction(
                                               label: "Yes.",

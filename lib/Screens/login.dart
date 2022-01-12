@@ -6,6 +6,7 @@ import 'package:ecommerce_app/Services/authentication.dart';
 import 'package:ecommerce_app/Services/firestore_database.dart';
 import 'package:ecommerce_app/Utils/utilities.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LogInPage extends StatefulWidget {
   static final String route = "lib\Interface\login.dart";
@@ -22,6 +23,7 @@ class _LogInPageState extends State<LogInPage> {
   bool obsecure = true;
   String active = "blocked";
   bool validate = false;
+  bool loading = false;
 
   @override
   void initState() {
@@ -36,8 +38,10 @@ class _LogInPageState extends State<LogInPage> {
       setState(() {});
     });
   }
-FocusNode user = FocusNode();
-FocusNode pass = FocusNode();
+
+  FocusNode user = FocusNode();
+  FocusNode pass = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -71,116 +75,176 @@ FocusNode pass = FocusNode();
                     children: [
                       Center(
                         child: Text((active == "blocked")
-                            ?"Have an account??": "Welcome back!"),
+                            ? "Have an account??"
+                            : "Welcome back!"),
                       ),
-
                       (active != "blocked")
-                          ?Text(active.toUpperCase(), style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500,), ): SizedBox(),
-
+                          ? Text(
+                              active.toUpperCase(),
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            )
+                          : SizedBox(),
                       (active == "blocked")
-                          ?TextField(
-                        onSubmitted: (input) {
-                          setState(() {
-                            active = input;
-                          });
-                        },
-                        focusNode: user,
-                        controller: userController,
-                        decoration: inStyle.copyWith(
-                          labelText: "Email",
-                          errorText: validate? "Please enter the right user name!": null,
-                          prefixIcon: Icon(
-                            Icons.mail_outlined,
-                            size: 24,
-                          ),
-                          suffixIcon: GestureDetector(
-                              onTap:  () {
-                                user.unfocus();
+                          ? TextField(
+                              onSubmitted: (input) {
                                 setState(() {
-                                  active = "blocked";
-                                  userController.clear();
+                                  active = input;
                                 });
                               },
-                              child: Icon(Icons.cancel)),
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                      )
+                              focusNode: user,
+                              controller: userController,
+                              decoration: inStyle.copyWith(
+                                labelText: "Email",
+                                errorText: validate
+                                    ? "Please enter a right email here!"
+                                    : null,
+                                prefixIcon: Icon(
+                                  Icons.mail_outlined,
+                                  size: 24,
+                                ),
+                                suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      user.unfocus();
+                                      setState(() {
+                                        active = "blocked";
+                                        userController.clear();
+                                      });
+                                    },
+                                    child: Icon(Icons.cancel)),
+                              ),
+                              keyboardType: TextInputType.emailAddress,
+                              textInputAction: TextInputAction.next,
+                            )
                           : TextField(
-                        focusNode: pass,
+                              focusNode: pass,
                               controller: passController,
                               obscureText: obsecure,
                               decoration: InputDecoration(
                                 labelText: "Password",
-                                errorText: validate?"Wrong Password": null,
+                                errorText: validate ? "Wrong Password" : null,
                                 prefixIcon: Icon(Icons.lock),
                                 suffixIcon: GestureDetector(
-                                  onTap:  () {setState(() {
-                                    obsecure = !obsecure;
-                                  });
+                                  onTap: () {
+                                    setState(() {
+                                      obsecure = !obsecure;
+                                    });
                                   },
                                   child: Icon((obsecure)
-                                      ?Icons.visibility: Icons.visibility_off),
+                                      ? Icons.visibility
+                                      : Icons.visibility_off),
                                 ),
                               ),
                             ),
-
                       Container(
-                          width: double.infinity,
-                          height: (height * 0.075),
-                          child: (active == "blocked")
-                              ? GradButton(text: "Go", onPress: (){
-                             /*   setState(() {
+                        width: double.infinity,
+                        height: (height * 0.075),
+                        child: (loading)
+                            ? SpinKitThreeInOut(
+                                color: Color(0xaaa6c63ff),
+                              )
+                            : (active == "blocked")
+                                ? GradButton(
+                                    text: "Go",
+                                    onPress: () async {
+                                      /*   setState(() {
                                   active = userController.text;
                                 });*/
-    if(userController.text == "") {
-    user.requestFocus();
-    } if(userController.text.contains('@')){
-setState(() {
-  active = userController.text;
-  user.unfocus();
-});
-    }
-    else {
-    setState(() {
-    validate = true;
-    });
-    }
+                                      if (userController.text == "") {
+                                        user.requestFocus();
+                                      }
+                                      if (userController.text.contains('@')) {
+                                        setState(() {
+                                          loading = true;
+                                        });
+                                        List<String> method =
+                                            await AuthenticationController
+                                                .startInstance
+                                                .fetchSignInMethodsForEmail(
+                                                    userController.text);
+                                        print(method);
+                                        if (method.isEmpty) {
+                                          setState(() {
+                                            loading = false;
+                                          });
+                                          const snackBar = SnackBar(
+                                            content: Text('Unregistered Email'),
+                                          );
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
+                                        } else {
+                                          setState(() {
+                                            loading = false;
+                                            active = userController.text;
+                                            user.unfocus();
+                                          });
+                                        }
+                                      } else {
+                                        setState(() {
+                                          validate = true;
+                                        });
+                                      }
+                                    })
+                                : GradButton(
+                                    text: "Log in",
+                                    onPress: () async {
+                                      if (passController.text == "" ||
+                                          passController.text.length < 6) {
+                                        pass.requestFocus();
+                                      }
+                                      if (passController.text.length >= 6) {
+                                        pass.unfocus();
+                                        setState(() {
+                                          loading = true;
+                                        });
+                                        final user =
+                                            await AuthenticationController()
+                                                .logUser(active,
+                                                    passController.text);
+                                        if (user == null) {
+                                          setState(() {
+                                            obsecure = true;
+                                            loading = false;
+                                            // active = "blocked";
+                                            validate = true;
+                                            //passController.clear();
+                                            //userController.clear();
+                                          });
+                                          final snackBar = SnackBar(
+                                            content: const Text(
+                                                'Incorrect Password'),
+                                            action: SnackBarAction(
+                                                label: 'Go back??',
+                                                onPressed: () {
+                                                  setState(() {
+                                                    loading = false;
+                                                    obsecure = true;
+                                                    active = "blocked";
+                                                    validate = false;
+                                                    passController.clear();
+                                                    userController.clear();
+                                                  });
 
-
-
-                          }) : GradButton(
-                              text: "Log in",
-                              onPress: () async{
-                                if(passController.text == "" || passController.text.length < 6) {
-                                  pass.requestFocus();
-                                } if(passController.text.length >=6){
-                                  final user = await AuthenticationController().logUser(active, passController.text);
-                                  if(user == null){
-                                    setState(() {
-                                      obsecure = true;
-                                       active = "blocked";
-                                       validate = false;
-                                       passController.clear();
-                                       userController.clear();
-                                    });
-                                    final snackBar = SnackBar(
-                                      content:
-                                      const Text('Wrong user info'),
-                                    );
-                                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                  } else {
-                                    await FireStoreBase().getUserData(user);
-                                    Navigator.pushNamed(context, HomePage.route);
-                                  }
-                                  //Navigator.pushNamed(context, HomePage.route);
-                                }
-                                // else {
-                                //   setState(() {
-                                //     validate = true;
-                                //   });
-                                // }
-                               /* if(passController.text == "") {
+                                                }),
+                                          );
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
+                                        } else {
+                                          await FireStoreBase()
+                                              .getUserData(user);
+                                          Navigator.pushNamed(
+                                              context, HomePage.route);
+                                        }
+                                        //Navigator.pushNamed(context, HomePage.route);
+                                      }
+                                      // else {
+                                      //   setState(() {
+                                      //     validate = true;
+                                      //   });
+                                      // }
+                                      /* if(passController.text == "") {
                                   pass.requestFocus();
                                 } if(passController.text == SplashScreen.currentUser.pass){
                                   Navigator.pushNamed(context, HomePage.route);
@@ -190,8 +254,8 @@ setState(() {
                                     validate = true;
                                   });
                                 }*/
-                              },
-                          ),
+                                    },
+                                  ),
                       ),
                     ],
                   ),
@@ -211,8 +275,9 @@ setState(() {
                     ),
                     ElevatedButton(
                         onPressed: () {
-                          if(active == "blocked"){
-                            Navigator.pushNamed(context, RegistrationForm.route);
+                          if (active == "blocked") {
+                            Navigator.pushNamed(
+                                context, RegistrationForm.route);
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -222,11 +287,11 @@ setState(() {
                         child: Container(
                           height: 40,
                           width: 80,
-                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              //gradient: baseGrad,
-                             color: Colors.grey,
-                            ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            //gradient: baseGrad,
+                            color: Colors.grey,
+                          ),
                           child: Center(
                             child: Text(
                               (active == "blocked") ? "Register" : "Get Help!",
