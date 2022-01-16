@@ -152,19 +152,31 @@ class _LogInPageState extends State<LogInPage> {
                                       /*   setState(() {
                                   active = userController.text;
                                 });*/
-                                      if (userController.text == "") {
+                                      if (userController.text ==  "") {
                                         user.requestFocus();
                                       }
                                       if (userController.text.contains('@')) {
                                         setState(() {
                                           loading = true;
                                         });
-                                        List<String> method =
-                                            await AuthenticationController
-                                                .startInstance
-                                                .fetchSignInMethodsForEmail(
-                                                    userController.text);
-                                        print(method);
+                                        List<String> method = [];
+                                        try {
+                                          method =
+                                              await AuthenticationController
+                                                  .startInstance
+                                                  .fetchSignInMethodsForEmail(
+                                                      userController.text);
+                                          print(method);
+                                        } catch (error) {
+                                          setState(() {
+                                            loading = false;
+                                          });
+                                          final snackBar = SnackBar(
+                                            content: Text('Error : '+ error.toString()),
+                                          );
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(snackBar);
+                                        }
                                         if (method.isEmpty) {
                                           setState(() {
                                             loading = false;
